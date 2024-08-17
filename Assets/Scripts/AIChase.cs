@@ -15,6 +15,8 @@ public class AIChase : MonoBehaviour
     {
        //We are going to variate the speed of mobs on intialization
        speed = Random.Range(minSpeed,maxSpeed);
+       //Intialize connection to Player Bird Prefab
+       player = GameObject.FindGameObjectWithTag("Bird");
     }
 
     // Update is called once per frame
@@ -28,7 +30,7 @@ public class AIChase : MonoBehaviour
 
     //Enemy causing damage
     private void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.tag == "Player"){
+        if(collision.gameObject.tag == "Bird"){
             Debug.Log("Collision");
             player.GetComponent<Health>().TakeDamage(1.0f);
         }
