@@ -22,6 +22,7 @@ public class PlayerAnimation : MonoBehaviour
         //if x or y are 0 they arent moving thus 
         if (pm.direction.x != 0 || pm.direction.y != 0) {
             am.SetBool("Move", true);
+            SpriteDirectionCheck();
         }
         else {
             am.SetBool("Move", false);
