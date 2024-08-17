@@ -8,8 +8,8 @@ public class PlayerScript : MonoBehaviour
 {
     public float speed = 10;
     Rigidbody2D body;
-    Vector2 direction = new(0.0f, 0.0f);
-
+    public Vector2 direction = new(0.0f, 0.0f);
+    [HideInInspector] //keeps inspector clean
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
