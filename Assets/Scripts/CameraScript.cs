@@ -7,8 +7,8 @@ public class CameraScript : MonoBehaviour
 {
     public Vector3 offset = new(0.0f, 0.0f, -10.0f);
 
-    //private float smoothTime = 0.25f;
-    //private Vector3 velocity = Vector3.zero;
+    private float smoothTime = 0.25f;
+    private Vector3 velocity = Vector3.zero;
 
     private GameObject player;
 
@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         Vector3 targetPos = player.transform.position + offset;
-        //Vector3 newPos = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime); // <- fuck you
+        Vector3 newPos = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime); // <- fuck you
         transform.position = targetPos;
     }
 }
