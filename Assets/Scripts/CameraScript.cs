@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("Player Bird");
+        player = GameObject.Find("Variables").GetComponent<VarScript>().player;
     }
 
     // Update is called once per frame
@@ -22,6 +22,6 @@ public class CameraScript : MonoBehaviour
     {
         Vector3 targetPos = player.transform.position + offset;
         Vector3 newPos = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime); // <- fuck you
-        transform.position = targetPos;
+        transform.position = newPos;
     }
 }
