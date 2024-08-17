@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player Bird");
     }
 
     // Update is called once per frame
