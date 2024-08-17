@@ -16,12 +16,13 @@ public class ChickScript : MonoBehaviour
     private float normSpeed;
     private float slowSpeed;
     private float fastSpeed;
-
     private Rigidbody2D body;
+    private VarScript vars;
 
     // Start is called before the first frame update
     void Start()
     {
+        vars = GameObject.Find("Variables").GetComponent<VarScript>();
         body = GetComponent<Rigidbody2D>();
         normSpeed = speed;
         slowSpeed = speed * 0.5f;
@@ -52,7 +53,7 @@ public class ChickScript : MonoBehaviour
         }
         else // While moving
         {
-            float stopConstraint = (parent.name != "Player") ? (constraintRadius * 0.7f) : (constraintRadius * 0.9f);
+            float stopConstraint = (parent != vars.player) ? (constraintRadius * 0.7f) : (constraintRadius * 0.9f);
 
             if (dist > constraintRadius) speed = fastSpeed; // constant speed when running
             else speed = Mathf.Lerp(fastSpeed, 0.0f, (constraintRadius - dist) / (constraintRadius - stopConstraint)); // slow down smoothly

@@ -7,16 +7,20 @@ public class AIChase : MonoBehaviour
 {
     public GameObject player;
     public float speed;
+
     [SerializeField] private float minSpeed = .5f;
     [SerializeField] private float maxSpeed = 3.0f;
     private float distance;
+    private VarScript vars;
 
     void Start()
     {
-       //We are going to variate the speed of mobs on intialization
-       speed = Random.Range(minSpeed,maxSpeed);
-       //Intialize connection to Player Bird Prefab
-       player = GameObject.FindGameObjectWithTag("Bird");
+        vars = GameObject.Find("Variables").GetComponent<VarScript>();
+
+        //We are going to variate the speed of mobs on intialization
+        speed = Random.Range(minSpeed,maxSpeed);
+
+        player = vars.player;
     }
 
     // Update is called once per frame
@@ -30,7 +34,7 @@ public class AIChase : MonoBehaviour
 
     //Enemy causing damage
     private void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.tag == "Bird"){
+        if(collision.gameObject.name == player.name){
             Debug.Log("Collision");
             player.GetComponent<Health>().TakeDamage(1.0f);
         }

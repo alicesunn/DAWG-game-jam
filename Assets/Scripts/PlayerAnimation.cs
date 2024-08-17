@@ -8,7 +8,7 @@ public class PlayerAnimation : MonoBehaviour
     Animator am;
     PlayerScript pm;
     SpriteRenderer sr;
-    // Start is called before the first frame update
+
     void Start()
     {
         am = GetComponent<Animator>();
@@ -16,7 +16,6 @@ public class PlayerAnimation : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //if x or y are 0 they arent moving thus 

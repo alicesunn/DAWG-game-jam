@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] public float health = 1;
+    [SerializeField] public float health = 3;
     private void Update() {
-        if(health<=0){
+        if (health <= 0){
             Defeated();
         }
     }
@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage){
         health -= damage;
     }
+
     public void Defeated(){
         //Add death animation here
         Debug.Log("Defeated");
