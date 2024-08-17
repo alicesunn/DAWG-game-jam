@@ -1,23 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public float speed;
+    public Vector3 offset = new(0.0f, 0.0f, -10.0f);
+
+    //private float smoothTime = 0.25f;
+    //private Vector3 velocity = Vector3.zero;
 
     private GameObject player;
 
     void Start()
     {
         player = GameObject.Find("Player");
-        speed = player.GetComponent<PlayerScript>().speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //float dist = Vector2.Distance(player.transform.position, transform.position);
-        //Vector2 direction = (player.transform.position - transform.position).normalized;
+        Vector3 targetPos = player.transform.position + offset;
+        //Vector3 newPos = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime); // <- fuck you
+        transform.position = targetPos;
     }
 }
