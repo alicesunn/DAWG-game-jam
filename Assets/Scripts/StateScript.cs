@@ -6,10 +6,15 @@ using UnityEngine;
 // A class for objects to reference external objects
 public class StateScript : MonoBehaviour
 {
-    // Change these when tags/names are changed
+    // Global variables, only change these when names/tags/etc are changed
+    // All other scripts should reference these variables instead of finding them themselves
     public string playerName = "Player";
     public string playerTag = "Bird";
     public int layerCount = 6; // number of track layers, which is same as number of chicks
+
+    // World boundaries. Player cannot walk past these
+    [HideInInspector] public float maxX;
+    [HideInInspector] public float maxY;
 
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject[] chicks;
@@ -18,6 +23,8 @@ public class StateScript : MonoBehaviour
 
     void Awake()
     {
+        maxX = 10.0f;
+        maxY = 10.0f;
         player = GameObject.Find(playerName);
         chicks = GameObject.FindGameObjectsWithTag("Chick");
         music = GameObject.Find("AudioController").GetComponent<AudioScript>();
