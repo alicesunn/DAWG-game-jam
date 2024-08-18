@@ -6,6 +6,10 @@ public class EnemySpawnerScript : MonoBehaviour
 {
     [SerializeField]
     private GameObject enemyPrefab;
+    [SerializeField]
+    private GameObject enemyPrefabTwo;
+    [SerializeField]
+    private GameObject enemyPrefabThree;
 
     [SerializeField]
     private float minimumSpawnTime;
@@ -14,6 +18,8 @@ public class EnemySpawnerScript : MonoBehaviour
     private float maximumSpawnTime;
 
     private float timeUntilSpawn;
+    private float timeUntilSpawnTwo;
+    private float timeUntilSpawnThree;
 
     void Awake()
     {
@@ -22,12 +28,23 @@ public class EnemySpawnerScript : MonoBehaviour
 
     void Update()
     {
+        //IM SORRY ABOUT THE SPAGHETTI
         timeUntilSpawn -= Time.deltaTime;
+        timeUntilSpawnTwo -= Time.deltaTime;
+        timeUntilSpawnThree -= Time.deltaTime;
 
         if (timeUntilSpawn <= 0)
         {
             Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             SetTimeUntilSpawn();
+        }
+        else if(timeUntilSpawnTwo <= 0){
+            Instantiate(enemyPrefabTwo, transform.position, Quaternion.identity);
+            SetTimeUntilSpawnTwo();
+        }
+        else if(timeUntilSpawnThree <=0){
+            Instantiate(enemyPrefabThree, transform.position, Quaternion.identity);
+            SetTimeUntilSpawnThree();
         }
     }
 
@@ -35,4 +52,11 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         timeUntilSpawn = Random.Range(minimumSpawnTime, maximumSpawnTime);
     }
+    private void SetTimeUntilSpawnTwo(){
+        timeUntilSpawnTwo = Random.Range(minimumSpawnTime, maximumSpawnTime) * 2f;
+    }
+    private void SetTimeUntilSpawnThree(){
+        timeUntilSpawnThree = Random.Range(minimumSpawnTime, maximumSpawnTime) * 2.5f;
+    }
+    
 }
