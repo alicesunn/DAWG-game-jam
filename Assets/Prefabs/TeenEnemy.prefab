@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3634684993679416870}
   m_Layer: 0
   m_Name: TeenEnemy
-  m_TagString: Enemy
+  m_TagString: Teen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5210331414485243942}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab7192ff8f12dd4f99241d745657af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
 --- !u!114 &3634684993679416870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +175,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6fba8203a5df443b963242d90365a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4020343801777015153, guid: bf0272c8511eebc469aad87f1d97f7dc, type: 3}
-  speed: 2
-  minSpeed: 1
-  maxSpeed: 3

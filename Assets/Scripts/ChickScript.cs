@@ -18,7 +18,7 @@ public class ChickScript : MonoBehaviour
 
     private Rigidbody2D body;
     private StateScript state;
-    private new SpriteRenderer renderer;
+    private SpriteRenderer rend;
 
     private float fastSpeed;
 
@@ -31,9 +31,9 @@ public class ChickScript : MonoBehaviour
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
         body = GetComponent<Rigidbody2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        rend = GetComponent<SpriteRenderer>();
         fastSpeed = speed * 1.3f;
-        gameObject.layer = -1; // make chicks render behind other entities
+        rend.sortingOrder = -1;
     }
 
     // Update is called once per frame
@@ -77,7 +77,7 @@ public class ChickScript : MonoBehaviour
     {
         colorT += Time.deltaTime / colorChangeTime;
         int nextInd = (colorInd >= colors.Length - 1) ? 0 : colorInd + 1;
-        renderer.color = Color.Lerp(colors[colorInd], colors[nextInd], colorT);
+        rend.color = Color.Lerp(colors[colorInd], colors[nextInd], colorT);
 
         if (colorT > 1.0f)
         {

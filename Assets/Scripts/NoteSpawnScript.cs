@@ -14,14 +14,12 @@ public class NoteSpawner : MonoBehaviour
         state = GameObject.Find("State").GetComponent<StateScript>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!state.notePickup)
-            state.notePickup = SpawnNote();
+        if (!state.notePickup) state.notePickup = SpawnNote();
     }
 
-    GameObject SpawnNote()
+    public GameObject SpawnNote()
     {
         Vector3 playerPos = state.player.transform.position;
 
@@ -29,7 +27,7 @@ public class NoteSpawner : MonoBehaviour
         float theta = Random.Range(1.0f, 360.0f) * Mathf.Deg2Rad;
 
         // Hypothetically already normalized but whatever
-        Vector3 dir = new Vector3((float) Mathf.Cos(theta), (float) Mathf.Sin(theta), 0.0f).normalized;
+        Vector3 dir = new Vector3((float)Mathf.Cos(theta), (float)Mathf.Sin(theta), 0.0f).normalized;
         float dist = Random.Range(MIN_SPAWN_RADIUS, MAX_SPAWN_RADIUS);
 
         // Check if going in said direction exceeds bounds. Rotate dir by 90 deg until it doesn't
@@ -38,7 +36,7 @@ public class NoteSpawner : MonoBehaviour
         while (OutOfBounds(notePos))
         {
             theta = Mathf.Deg2Rad * (Mathf.Rad2Deg * theta + 90.0f);
-            dir = new Vector3((float) Mathf.Cos(theta), (float) Mathf.Sin(theta), 0.0f).normalized;
+            dir = new Vector3((float)Mathf.Cos(theta), (float)Mathf.Sin(theta), 0.0f).normalized;
             notePos = playerPos + dir * dist;
         }
 

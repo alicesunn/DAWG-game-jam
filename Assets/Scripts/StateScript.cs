@@ -9,9 +9,14 @@ public class StateScript : MonoBehaviour
     // Global variables, only change these when names/tags/etc are changed
     // All other scripts should reference these variables instead of finding them themselves
     public string playerName = "Player";
+    public string musicControllerName = "AudioController";
+    public string cameraName = "Main Camera";
+
     public string playerTag = "Bird";
     public string notePickupTag = "NotePickup";
-    public int layerCount = 6; // number of track layers, which is same as number of chicks
+    public string kidTag = "Kid";
+    public string teenTag = "Teen";
+    public string adultTag = "Adult";
 
     // Prefab references which must be assigned through drag/drop in inspector
     public GameObject chickPrefab;
@@ -21,17 +26,19 @@ public class StateScript : MonoBehaviour
     public GameObject adultPrefab;
     //public GameObject bulletPrefab;
 
-    // World boundaries. Player cannot walk past these
+    // World boundaries
     [HideInInspector] public float maxX;
     [HideInInspector] public float maxY;
     [HideInInspector] public Vector2 maxPos;
 
-    // Scene object references
+    // Scene object/component references
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject notePickup; // currently spawned note pickup
     [HideInInspector] public GameObject[] chicks;
-
+    [HideInInspector] public Camera cam;
     [HideInInspector] public AudioScript music;
+
+    [HideInInspector] public int layerCount = 6; // number of track layers, which is same as number of chicks
 
     void Awake()
     {
@@ -39,19 +46,13 @@ public class StateScript : MonoBehaviour
         maxY = 100.0f;
         maxPos = new(maxX, maxY);
         player = GameObject.Find(playerName);
-        //chicks = GameObject.FindGameObjectsWithTag("Chick");
-        music = GameObject.Find("AudioController").GetComponent<AudioScript>();
+        cam = GameObject.Find(cameraName).GetComponent<Camera>();
+        music = GameObject.Find(musicControllerName).GetComponent<AudioScript>();
+    }
 
-        // TODO: spawn layerCount amount of chicks near player (so no manual drag-drop chick spawning later)
-        // ensuring chicks spawn progressively further away will also prevent need for sorting chick line
-
-        // Create chick conga line relationships
-        //Array.Sort(chicks, delegate (GameObject b1, GameObject b2) { // Sort by distance from player
-        //    return (Mathf.Pow(b1.transform.position.x - transform.position.x, 2) + Mathf.Pow(b1.transform.position.y - transform.position.y, 2))
-        //        .CompareTo(Mathf.Pow(b2.transform.position.x - transform.position.x, 2) + Mathf.Pow(b2.transform.position.y - transform.position.y, 2));
-        //});
-
-        // Assign chick line
+    void Start()
+    {
+        // Instantiate layerCount number of chicks and assign line relationships
         chicks = new GameObject[layerCount];
         GameObject p = player;
         for (int i = 0; i < layerCount; i++)

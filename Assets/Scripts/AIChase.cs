@@ -1,42 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class AIChase : MonoBehaviour
 {
-    public GameObject player;
-    public float speed;
-
-    [SerializeField] private float minSpeed = .5f;
-    [SerializeField] private float maxSpeed = 3.0f;
-    private float distance;
     private StateScript state;
+    private Health playerHealth;
+    private Rigidbody2D body;
+
+    private float speed;
 
     void Start()
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
+        playerHealth = state.player.GetComponent<Health>();
+        body = GetComponent<Rigidbody2D>();
 
-        //We are going to variate the speed of mobs on intialization
-        speed = Random.Range(minSpeed,maxSpeed);
-
-        player = state.player;
+        // Vary speed depending on if object holding this instance is a kid/teen/adult
+        float playerSpeed = state.player.GetComponent<PlayerScript>().speed;
+        if (gameObject.CompareTag(state.kidTag)) speed = playerSpeed * 1.5f;
+        else if (gameObject.CompareTag(state.teenTag)) speed = playerSpeed;
+        else speed = playerSpeed * 0.85f;
     }
 
-    // Update is called once per frame
+    // Walk towards player
     void Update()
     {
-        distance = Vector2.Distance(transform.position,player.transform.position);
-        //now the actual move towards enemy
-        transform.position = Vector2.MoveTowards(this.transform.position,player.transform.position,speed * Time.deltaTime);
-
+        Vector3 dir = (state.player.transform.position - transform.position).normalized;
+        body.velocity = dir * speed;
     }
 
     //Enemy causing damage
-    private void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.name == player.name){
-            Debug.Log("Collision");
-            player.GetComponent<Health>().TakeDamage(1.0f);
+    private void OnCollisionStay2D(Collision2D collision){
+        if(collision.gameObject.name == state.player.name)
+        {
+            playerHealth.TakeDamage(1.0f);
+            //Debug.Log("player hp = " + playerHealth.health + " (-" + 1 + ")");
+
+            // for testing, lets make player collision also do damage to the enemy
+            gameObject.GetComponent<Health>().TakeDamage(1.0f);
         }
     }
 }

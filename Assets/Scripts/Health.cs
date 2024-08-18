@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] public float health = 3;
-    private void Update() {
-        if (health <= 0){
-            Defeated();
-        }
+    public float health = 1;
+
+    private const float IFRAMES = 0.2f;
+    private float iframeTimer = 0.0f;
+
+    private void Update()
+    {
+        if (iframeTimer > 0.0f) iframeTimer -= Time.deltaTime;
     }
-    
-    public void TakeDamage(float damage){
+
+    public void TakeDamage(float damage)
+    {
+        if (iframeTimer > 0.0f) return;
+
+        iframeTimer = IFRAMES;
         health -= damage;
+
+        if (health <= 0) Defeated();
     }
 
     public void Defeated(){

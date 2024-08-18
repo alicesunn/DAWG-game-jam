@@ -5,10 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bird
-  - Enemy
   - Chick
   - Enemy
   - NotePickup
+  - Kid
+  - Teen
+  - Adult
   layers:
   - Default
   - TransparentFX
