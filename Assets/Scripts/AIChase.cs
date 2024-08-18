@@ -11,16 +11,16 @@ public class AIChase : MonoBehaviour
     [SerializeField] private float minSpeed = .5f;
     [SerializeField] private float maxSpeed = 3.0f;
     private float distance;
-    private VarScript vars;
+    private StateScript state;
 
     void Start()
     {
-        vars = GameObject.Find("Variables").GetComponent<VarScript>();
+        state = GameObject.Find("State").GetComponent<StateScript>();
 
         //We are going to variate the speed of mobs on intialization
         speed = Random.Range(minSpeed,maxSpeed);
 
-        player = vars.player;
+        player = state.player;
     }
 
     // Update is called once per frame

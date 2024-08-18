@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 2339194172532400960}
   - component: {fileID: 5473175608594311461}
   - component: {fileID: 3769624774552602926}
-  - component: {fileID: 3377543841046981869}
+  - component: {fileID: 8836987217615424293}
+  - component: {fileID: 1471841276352127812}
   m_Layer: 0
   m_Name: Player Bird
   m_TagString: Bird
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed382af8b441e746a8045d631dffe17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &3377543841046981869
+--- !u!95 &8836987217615424293
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -198,3 +199,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1471841276352127812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4020343801777015153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed382af8b441e746a8045d631dffe17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
