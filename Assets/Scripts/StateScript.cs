@@ -9,14 +9,18 @@ public class StateScript : MonoBehaviour
     // Change these when tags/names are changed
     public string playerName = "Player";
     public string playerTag = "Bird";
+    public int layerCount = 6; // number of track layers, which is same as number of chicks
 
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject[] chicks;
 
-    void Start()
+    void Awake()
     {
         player = GameObject.Find(playerName);
         chicks = GameObject.FindGameObjectsWithTag("Chick");
+
+        // TODO: spawn layerCount amount of chicks near player (so no manual drag-drop chick spawning later)
+        // ensuring chicks spawn progressively further away will also prevent need for sorting chick line
 
         // Create chick conga line relationships
         Array.Sort(chicks, delegate (GameObject b1, GameObject b2) { // Sort by distance from player
