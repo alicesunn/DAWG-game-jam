@@ -21,8 +21,8 @@ public class StateScript : MonoBehaviour
 
     void Awake()
     {
-        maxX = 10.0f;
-        maxY = 10.0f;
+        maxX = 100.0f;
+        maxY = 100.0f;
         player = GameObject.Find(playerName);
         chicks = GameObject.FindGameObjectsWithTag("Chick");
 
