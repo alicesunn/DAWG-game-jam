@@ -35,6 +35,5 @@ public class PlayerScript : MonoBehaviour
         direction = new Vector2(x, y).normalized;
         
         body.velocity = direction * speed;
-        Debug.Log(body.velocity);
     }
 }

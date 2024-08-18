@@ -14,10 +14,13 @@ public class StateScript : MonoBehaviour
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject[] chicks;
 
+    public AudioScript music;
+
     void Awake()
     {
         player = GameObject.Find(playerName);
         chicks = GameObject.FindGameObjectsWithTag("Chick");
+        music = GameObject.Find("AudioController").GetComponent<AudioScript>();
 
         // TODO: spawn layerCount amount of chicks near player (so no manual drag-drop chick spawning later)
         // ensuring chicks spawn progressively further away will also prevent need for sorting chick line
