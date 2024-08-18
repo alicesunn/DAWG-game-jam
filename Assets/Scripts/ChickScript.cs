@@ -33,6 +33,7 @@ public class ChickScript : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         fastSpeed = speed * 1.3f;
+        gameObject.layer = -1; // make chicks render behind other entities
     }
 
     // Update is called once per frame

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6479793696486603070}
   - component: {fileID: 3634684993679416870}
   m_Layer: 0
-  m_Name: TrashMob
+  m_Name: KidEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

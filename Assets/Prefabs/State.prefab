@@ -46,5 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: Player
   playerTag: Bird
+  notePickupTag: NotePickup
+  layerCount: 6
+  chickPrefab: {fileID: 6436264512336589616, guid: 10a8dd95eaaf1d94a9dc1e1845fc79e0, type: 3}
+  notePickupPrefab: {fileID: 4031181864181676580, guid: d1c1ccebea2b93a498abaad54461985f, type: 3}
+  kidPrefab: {fileID: 5210331414485243942, guid: 4f5285c4c88ff46499352407fae3d5eb, type: 3}
+  teenPrefab: {fileID: 5210331414485243942, guid: 8c28a62357fa5d843a086fbb9ed5307e, type: 3}
+  adultPrefab: {fileID: 5210331414485243942, guid: aeb5216f98e99a541af740cb57f6898a, type: 3}
+  bulletPrefab: {fileID: 0}
+  maxX: 0
+  maxY: 0
+  maxPos: {x: 0, y: 0}
   player: {fileID: 0}
+  notePickup: {fileID: 0}
   chicks: []
+  music: {fileID: 0}

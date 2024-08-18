@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 489808049585709882}
   - component: {fileID: 3834721668436540096}
   - component: {fileID: 2339194172532400960}
-  - component: {fileID: 5473175608594311461}
+  - component: {fileID: 6932645811124913251}
   - component: {fileID: 3769624774552602926}
   - component: {fileID: 8836987217615424293}
   - component: {fileID: 896443513325228676}
@@ -129,10 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7b93027d5c49044b4f301e153dc611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
   direction: {x: 0, y: 0}
---- !u!58 &5473175608594311461
-CircleCollider2D:
+  speed: 5
+--- !u!60 &6932645811124913251
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -163,9 +163,29 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.35}
-  serializedVersion: 2
-  m_Radius: 0.44
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.4, y: 1.48}
+    newSize: {x: 1.09375, y: 1.15625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.2892425, y: 0.55075717}
+      - {x: 0.22255793, y: 0.020963121}
+      - {x: -0.59946465, y: -0.11462146}
+      - {x: -0.17366803, y: -0.5247259}
+      - {x: -0.0825851, y: -0.66903377}
+      - {x: 0.22796366, y: -0.6098956}
+      - {x: 0.5218283, y: -0.30779985}
+      - {x: 0.43387708, y: 0.10665814}
+      - {x: 0.6112924, y: 0.6081723}
+      - {x: 0.4130155, y: 0.71043086}
+  m_UseDelaunayMesh: 0
 --- !u!114 &3769624774552602926
 MonoBehaviour:
   m_ObjectHideFlags: 0
