@@ -20,14 +20,11 @@ public class ChickScript : MonoBehaviour
     private StateScript state;
     private new SpriteRenderer renderer;
 
-    private float normSpeed;
-    private float slowSpeed;
     private float fastSpeed;
 
     public float colorChangeTime = 2.5f;
     private float colorT;
     private int colorInd = 0;
-    private bool moving;
 
     // Start is called before the first frame update
     void Start()
@@ -35,10 +32,7 @@ public class ChickScript : MonoBehaviour
         state = GameObject.Find("State").GetComponent<StateScript>();
         body = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
-        normSpeed = speed;
-        slowSpeed = speed * 0.5f;
         fastSpeed = speed * 1.3f;
-        moving = false;
     }
 
     // Update is called once per frame
@@ -60,7 +54,6 @@ public class ChickScript : MonoBehaviour
         // then adjust speed based on distance from parent
         if (body.velocity == Vector2.zero) // Initial standstill
         {
-            moving = false;
             // Do not move until parent has gotten far enough away
             if (dist > constraintRadius * 1.2f)
             {
@@ -69,7 +62,6 @@ public class ChickScript : MonoBehaviour
         }
         else // While moving
         {
-            moving = true;
             float stopConstraint = (parent != state.player) ? (constraintRadius * 0.7f) : (constraintRadius * 0.9f);
 
             if (dist > constraintRadius) speed = fastSpeed; // constant speed when running
@@ -79,6 +71,7 @@ public class ChickScript : MonoBehaviour
         body.velocity = direction * speed;
     }
 
+    // Chick will cycle through rainbow colors when singing for prototype purposes. Probably don't include in final game
     private void RotateColor()
     {
         colorT += Time.deltaTime / colorChangeTime;
@@ -92,7 +85,7 @@ public class ChickScript : MonoBehaviour
         }
     }
     
-    public bool isMoving() {
-        return moving;
+    public bool IsMoving() {
+        return body.velocity.magnitude > 0.25f;
     }
 }

@@ -8,7 +8,7 @@ public class ChickAnimation : MonoBehaviour
     Animator am;
     ChickScript cm;
     SpriteRenderer sr;
-    // Start is called before the first frame update
+
     void Start()
     {
         am = GetComponent<Animator>();
@@ -19,7 +19,7 @@ public class ChickAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cm.isMoving()) {
+        if (cm.IsMoving()) {
             am.SetBool("Move", true);
             SpriteDirectionCheck();
         }
@@ -36,5 +36,4 @@ public class ChickAnimation : MonoBehaviour
             sr.flipX = false;
         }
     }
-
 }
