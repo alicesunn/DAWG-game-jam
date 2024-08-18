@@ -102,10 +102,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39780cb4f250b0c4da2ca2905001ee90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  constraintRadius: 1.5
   parent: {fileID: 0}
   child: {fileID: 0}
+  colors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 0.42044878, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.6094094, b: 0, a: 1}
+  isSinging: 0
+  speed: 4
+  constraintRadius: 1.5
+  colorChangeTime: 2.5
 --- !u!50 &7176855086968316850
 Rigidbody2D:
   serializedVersion: 4

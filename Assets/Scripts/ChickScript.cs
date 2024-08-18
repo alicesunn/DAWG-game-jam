@@ -7,18 +7,26 @@ using UnityEngine;
 
 public class ChickScript : MonoBehaviour
 {
+    public GameObject parent; // bird to follow
+    public GameObject child; // bird that follows
+    public Color[] colors; // bird will change colors to indicate it's singing
+
+    public bool isSinging = false;
     public float speed = 4.0f; // default speed
     public float constraintRadius = 1.5f; // maintain this distance on move/stop
     public Vector2 direction = new(0.0f, 0.0f);
 
-    public GameObject parent; // bird to follow
-    public GameObject child; // bird that follows
+    private Rigidbody2D body;
+    private StateScript state;
+    private new SpriteRenderer renderer;
 
     private float normSpeed;
     private float slowSpeed;
     private float fastSpeed;
-    private Rigidbody2D body;
-    private StateScript state;
+
+    public float colorChangeTime = 2.5f;
+    private float colorT;
+    private int colorInd = 0;
     private bool moving;
 
     // Start is called before the first frame update
@@ -26,6 +34,7 @@ public class ChickScript : MonoBehaviour
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
         body = GetComponent<Rigidbody2D>();
+        renderer = GetComponent<SpriteRenderer>();
         normSpeed = speed;
         slowSpeed = speed * 0.5f;
         fastSpeed = speed * 1.3f;
@@ -36,6 +45,9 @@ public class ChickScript : MonoBehaviour
     void Update()
     {
         MoveTowardsParent();
+
+        // Change colors when singing
+        if (isSinging) RotateColor();
     }
 
     // Call every frame
@@ -67,6 +79,19 @@ public class ChickScript : MonoBehaviour
         body.velocity = direction * speed;
     }
 
+    private void RotateColor()
+    {
+        colorT += Time.deltaTime / colorChangeTime;
+        int nextInd = (colorInd >= colors.Length - 1) ? 0 : colorInd + 1;
+        renderer.color = Color.Lerp(colors[colorInd], colors[nextInd], colorT);
+
+        if (colorT > 1.0f)
+        {
+            colorT = 0.0f;
+            colorInd = nextInd;
+        }
+    }
+    
     public bool isMoving() {
         return moving;
     }
