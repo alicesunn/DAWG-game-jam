@@ -13,7 +13,7 @@ public class StateScript : MonoBehaviour
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject[] chicks;
 
-    void Start()
+    void Awake()
     {
         player = GameObject.Find(playerName);
         chicks = GameObject.FindGameObjectsWithTag("Chick");
