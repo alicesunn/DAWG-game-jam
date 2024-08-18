@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("Variables").GetComponent<VarScript>().player;
+        player = GameObject.Find("State").GetComponent<StateScript>().player;
     }
 
     // Update is called once per frame
