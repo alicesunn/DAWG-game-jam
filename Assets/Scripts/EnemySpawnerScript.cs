@@ -19,11 +19,15 @@ public class EnemySpawnerScript : MonoBehaviour
 
     private float timeUntilSpawn;
     private float timeUntilSpawnTwo;
+    private float MAGICNUMBERMULTIPLIERONE = 2f;
     private float timeUntilSpawnThree;
+    private float MAGICNUMBERMULTIPLIERTWO = 3f;
 
     void Awake()
     {
         SetTimeUntilSpawn();
+        SetTimeUntilSpawnTwo();
+        SetTimeUntilSpawnThree();
     }
 
     void Update()
@@ -53,10 +57,10 @@ public class EnemySpawnerScript : MonoBehaviour
         timeUntilSpawn = Random.Range(minimumSpawnTime, maximumSpawnTime);
     }
     private void SetTimeUntilSpawnTwo(){
-        timeUntilSpawnTwo = Random.Range(minimumSpawnTime, maximumSpawnTime) * 2f;
+        timeUntilSpawnTwo = Random.Range(minimumSpawnTime, maximumSpawnTime) * MAGICNUMBERMULTIPLIERONE;
     }
     private void SetTimeUntilSpawnThree(){
-        timeUntilSpawnThree = Random.Range(minimumSpawnTime, maximumSpawnTime) * 2.5f;
+        timeUntilSpawnThree = Random.Range(minimumSpawnTime, maximumSpawnTime) * MAGICNUMBERMULTIPLIERTWO;
     }
     
 }
