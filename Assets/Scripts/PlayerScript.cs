@@ -6,21 +6,22 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class PlayerScript : MonoBehaviour
 {
+    [HideInInspector] public Vector2 direction = new(0.0f, 0.0f);
     public float speed = 10;
 
-    [HideInInspector] public Vector2 direction = new(0.0f, 0.0f);
+    private const float MAX_X = 100.0f;
+    private const float MAX_Y = 100.0f;
 
     private Rigidbody2D body;
-    private StateScript state;
-
-    //Runs before anything else in the script
+    //private StateScript state;
 
     void Start()
     {
-        
-        state = GameObject.Find("State").GetComponent<StateScript>();
+        // Start at origin
+        transform.position = Vector3.zero;
+
+        //state = GameObject.Find("State").GetComponent<StateScript>();
         body = GetComponent<Rigidbody2D>();
-        
     }
 
     void Update()
@@ -32,9 +33,14 @@ public class PlayerScript : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        direction = new Vector2(x, y).normalized;
-        
-        body.velocity = direction * speed;
-        Debug.Log(body.velocity);
+        direction = new Vector2(x, y).normalized; // for animation purposes
+
+        body.velocity = new Vector2(x, y).normalized * speed;
+
+        // Prevent from walking beyond certain point
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, -MAX_X, MAX_X);
+        pos.y = Mathf.Clamp(pos.y, -MAX_Y, MAX_Y);
+        transform.position = pos;
     }
 }
