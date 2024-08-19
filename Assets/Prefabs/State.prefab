@@ -45,19 +45,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Player
+  musicControllerName: AudioController
+  cameraName: Main Camera
   playerTag: Bird
   notePickupTag: NotePickup
-  layerCount: 6
+  kidTag: Kid
+  teenTag: Teen
+  adultTag: Adult
+  enemyLayer: 6
   chickPrefab: {fileID: 6436264512336589616, guid: 10a8dd95eaaf1d94a9dc1e1845fc79e0, type: 3}
   notePickupPrefab: {fileID: 4031181864181676580, guid: d1c1ccebea2b93a498abaad54461985f, type: 3}
   kidPrefab: {fileID: 5210331414485243942, guid: 4f5285c4c88ff46499352407fae3d5eb, type: 3}
   teenPrefab: {fileID: 5210331414485243942, guid: 8c28a62357fa5d843a086fbb9ed5307e, type: 3}
   adultPrefab: {fileID: 5210331414485243942, guid: aeb5216f98e99a541af740cb57f6898a, type: 3}
-  bulletPrefab: {fileID: 0}
+  arrowPrefab: {fileID: 8799599763739099956, guid: 53f9dd84edfc18a44be8af2baea27094, type: 3}
+  bulletOnePrefab: {fileID: 0}
+  bulletTwoPrefab: {fileID: 0}
+  bulletThreePrefab: {fileID: 0}
+  bulletTreblePrefab: {fileID: 4882670901530081861, guid: 206ef90bf03dc6c4b9e1a77eec233a01, type: 3}
+  bulletBassPrefab: {fileID: 0}
   maxX: 0
   maxY: 0
-  maxPos: {x: 0, y: 0}
+  layerCount: 6
   player: {fileID: 0}
   notePickup: {fileID: 0}
-  chicks: []
+  arrow: {fileID: 0}
+  cam: {fileID: 0}
   music: {fileID: 0}
+  chicks: []
+  enemies: []

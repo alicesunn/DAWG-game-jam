@@ -26,7 +26,7 @@ public class PlayerScript : MonoBehaviour
         HandleMovement();
     }
 
-    void HandleMovement()
+    private void HandleMovement()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");

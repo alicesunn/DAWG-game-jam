@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7608261322943414661}
   - component: {fileID: 489808049585709882}
-  - component: {fileID: 3834721668436540096}
-  - component: {fileID: 2339194172532400960}
-  - component: {fileID: 6932645811124913251}
-  - component: {fileID: 3769624774552602926}
   - component: {fileID: 8836987217615424293}
+  - component: {fileID: 3834721668436540096}
+  - component: {fileID: 6932645811124913251}
+  - component: {fileID: 2339194172532400960}
+  - component: {fileID: 3769624774552602926}
   - component: {fileID: 896443513325228676}
+  - component: {fileID: 5755222466128664536}
   m_Layer: 0
   m_Name: Player Bird
   m_TagString: Bird
@@ -90,6 +91,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8836987217615424293
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4020343801777015153}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 589efd3905b385e4295a17f455c346ea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &3834721668436540096
 Rigidbody2D:
   serializedVersion: 4
@@ -112,25 +134,11 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2339194172532400960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4020343801777015153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c7b93027d5c49044b4f301e153dc611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
-  speed: 5
 --- !u!60 &6932645811124913251
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -186,6 +194,20 @@ PolygonCollider2D:
       - {x: 0.6112924, y: 0.6081723}
       - {x: 0.4130155, y: 0.71043086}
   m_UseDelaunayMesh: 0
+--- !u!114 &2339194172532400960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4020343801777015153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c7b93027d5c49044b4f301e153dc611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0}
+  speed: 5
 --- !u!114 &3769624774552602926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,27 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed382af8b441e746a8045d631dffe17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &8836987217615424293
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4020343801777015153}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 589efd3905b385e4295a17f455c346ea, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &896443513325228676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +233,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1000
+--- !u!114 &5755222466128664536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4020343801777015153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483eb377cd4fca6498677ce8e2fd1177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4882670901530081861, guid: 206ef90bf03dc6c4b9e1a77eec233a01, type: 3}
+  cooldown: 0
