@@ -64,12 +64,18 @@ public class NoteSpawner : MonoBehaviour
         }
 
         // Pick treble/bass clef randomly
-        GameObject prefab;
+        GameObject prefab = state.notePickupPrefab;
+        float angle = -90.0f;
         int rand = Random.Range(0, 2);
-        if (rand == 0) prefab = state.notePickupPrefab;
-        else prefab = state.notePickupPrefabTwo;
+        if (rand == 1)
+        {
+            prefab = state.notePickupPrefabTwo;
+            angle = -66.0f;
+        }
 
-        return Instantiate(prefab, notePos, Quaternion.identity);
+        GameObject pickup = Instantiate(prefab, notePos, Quaternion.identity);
+        pickup.GetComponent<NoteHit>().SetRotate(angle);
+        return pickup;
     }
 
     // Check if a position is inaccessible to the player

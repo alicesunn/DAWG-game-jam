@@ -19,15 +19,16 @@ public class ChickScript : MonoBehaviour
     private Rigidbody2D body;
     private ChickSpriteScript spriteScript;
 
-    [HideInInspector] public float speed = 4.0f;
     [HideInInspector] public float fastSpeed;
+    [HideInInspector] public float speed;
 
     void Start()
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
         body = GetComponent<Rigidbody2D>();
         spriteScript = gameObject.GetComponentInChildren<ChickSpriteScript>();
-        fastSpeed = speed * 1.3f;
+        speed = state.chickSpeed;
+        fastSpeed = state.chickSpeed * 1.3f;
     }
 
     // Update is called once per frame

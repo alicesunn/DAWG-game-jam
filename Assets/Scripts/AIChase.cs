@@ -21,10 +21,9 @@ public class AIChase : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
 
         // Vary speed depending on if object holding this instance is a kid/teen/adult
-        float playerSpeed = state.player.GetComponent<PlayerScript>().speed;
-        if (gameObject.CompareTag(state.kidTag)) speed = playerSpeed * 1.1f;
-        else if (gameObject.CompareTag(state.teenTag)) speed = playerSpeed * 0.8f;
-        else speed = playerSpeed * 0.7f;
+        if (gameObject.CompareTag(state.kidTag)) speed = state.playerSpeed * 1.1f;
+        else if (gameObject.CompareTag(state.teenTag)) speed = state.playerSpeed * 0.8f;
+        else speed = state.playerSpeed * 0.6f;
     }
 
     // Walk towards player
@@ -32,9 +31,14 @@ public class AIChase : MonoBehaviour
     {
         dir = (state.player.transform.position - transform.position).normalized;
         body.velocity = dir * speed;
+
+        // Flip depending on direction
+        Vector3 scale = transform.localScale;
+        if ((dir.x < 0 && scale.x > 0) || (dir.x > 0 && scale.x < 0)) scale.x *= -1;
+        transform.localScale = scale;
     }
 
-    //Enemy causing damage
+    // Damage player
     private void OnCollisionStay2D(Collision2D collision){
         if(collision.gameObject.name == state.player.name)
         {

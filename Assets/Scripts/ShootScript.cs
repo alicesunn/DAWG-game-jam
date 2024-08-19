@@ -7,6 +7,7 @@ public class ShootScript : MonoBehaviour
 {
     private StateScript state;
     private ChickScript chickScript;
+    private Animator anim;
     private float timer;
     private float cooldown;
 
@@ -17,6 +18,7 @@ public class ShootScript : MonoBehaviour
         timer = 0.0f;
 
         chickScript = gameObject.GetComponent<ChickScript>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -29,6 +31,12 @@ public class ShootScript : MonoBehaviour
             }
             else
             {
+                // Play shooting animation, if script attached to mother bird
+                if (gameObject.name == state.playerName)
+                {
+                    anim.SetTrigger("ShootTrigger");
+                }
+
                 // Pick a random prefab to instantiate
                 int rand = Random.Range(1, 4);
                 if (rand == 1) Instantiate(state.bulletPrefabOne, gameObject.transform.position, Quaternion.identity);

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // A class for scripts to find commonly used data/references.
 // All other scripts should reference state variables instead of finding them themselves
@@ -39,7 +40,7 @@ public class StateScript : MonoBehaviour
     // Values
     [HideInInspector] public float maxX; // world
     [HideInInspector] public float maxY; // boundary
-    [HideInInspector] public int layerCount = 6; // number of music layers, same as number of chicks
+    [HideInInspector] public int layerCount = 3; // number of music layers, same as number of chicks
 
     // Scene objects
     [HideInInspector] public GameObject player;
@@ -53,12 +54,25 @@ public class StateScript : MonoBehaviour
     // Data
     [HideInInspector] public GameObject[] chicks;
     [HideInInspector] public List<GameObject> enemies;
+    [HideInInspector] public float playerSpeed = 4.0f;
+    [HideInInspector] public float chickSpeed = 3.0f;
+
     private HashSet<string> enemyTags;
     private int notesSoFar = 0;
     private const int NOTES_PER_CHICK = 3;
 
+    private void Update()
+    {
+        // TESTING
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene("Defeat");
+        }
+    }
+
     void Awake()
     {
+        layerCount = 3;
         maxX = 100.0f;
         maxY = 100.0f;
         player = GameObject.Find(playerName);
