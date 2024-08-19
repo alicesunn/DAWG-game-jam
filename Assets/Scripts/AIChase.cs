@@ -22,9 +22,9 @@ public class AIChase : MonoBehaviour
 
         // Vary speed depending on if object holding this instance is a kid/teen/adult
         float playerSpeed = state.player.GetComponent<PlayerScript>().speed;
-        if (gameObject.CompareTag(state.kidTag)) speed = playerSpeed * 1.5f;
-        else if (gameObject.CompareTag(state.teenTag)) speed = playerSpeed;
-        else speed = playerSpeed * 0.85f;
+        if (gameObject.CompareTag(state.kidTag)) speed = playerSpeed * 1.1f;
+        else if (gameObject.CompareTag(state.teenTag)) speed = playerSpeed * 0.8f;
+        else speed = playerSpeed * 0.7f;
     }
 
     // Walk towards player

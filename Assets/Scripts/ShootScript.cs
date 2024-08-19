@@ -13,7 +13,7 @@ public class ShootScript : MonoBehaviour
     void Start()
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
-        cooldown = 2.5f; // set default here because unity is being a fucking bitch ! ! !
+        cooldown = 1.5f; // set default here because unity is being a fucking bitch ! ! !
         timer = 0.0f;
 
         chickScript = gameObject.GetComponent<ChickScript>();

@@ -27,6 +27,7 @@ public class StateScript : MonoBehaviour
     // Prefabs (assign through drag/drop inspector)
     public GameObject chickPrefab;
     public GameObject notePickupPrefab;
+    public GameObject notePickupPrefabTwo;
     public GameObject kidPrefab;
     public GameObject teenPrefab;
     public GameObject adultPrefab;
@@ -49,11 +50,12 @@ public class StateScript : MonoBehaviour
     [HideInInspector] public Camera cam;
     [HideInInspector] public AudioScript music;
 
-    // Data structures
+    // Data
     [HideInInspector] public GameObject[] chicks;
     [HideInInspector] public List<GameObject> enemies;
-
     private HashSet<string> enemyTags;
+    private int notesSoFar = 0;
+    private const int NOTES_PER_CHICK = 3;
 
     void Awake()
     {
@@ -121,5 +123,20 @@ public class StateScript : MonoBehaviour
     public float DistSquared(Vector3 a, Vector3 b)
     {
         return Mathf.Pow(a.x - b.x, 2) + Mathf.Pow(a.y - b.y, 2);
+    }
+
+    public void PickUpNote()
+    {
+        notesSoFar++;
+
+        if (notesSoFar == NOTES_PER_CHICK)
+        {
+            music.PlayNextLayer();
+            notesSoFar = 0;
+        }
+        else
+        {
+            chicks[music.layerIndex].GetComponent<ChickScript>().OnPickup(notesSoFar);
+        }
     }
 }

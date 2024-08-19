@@ -29,7 +29,7 @@ public class EnemySpawnScript : MonoBehaviour
     {
         // Spawn an enemy every [cooldown] seconds
         if (timer > 0.0f) timer -= Time.deltaTime;
-        else
+        else if (state.enemies.Count < 100)
         {
             SpawnEnemy();
             timer = cooldown;

@@ -7,8 +7,8 @@ public class NoteSpawner : MonoBehaviour
     private StateScript state;
 
     private const float NOTE_COOLDOWN = 0.0f;
-    private const float MIN_SPAWN_RADIUS = 30.0f;
-    private const float MAX_SPAWN_RADIUS = 50.0f;
+    private const float MIN_SPAWN_RADIUS = 20.0f;
+    private const float MAX_SPAWN_RADIUS = 40.0f;
 
     private float noteTimer = 0.0f;
 
@@ -43,6 +43,7 @@ public class NoteSpawner : MonoBehaviour
 
     public GameObject SpawnNote()
     {
+
         Vector3 playerPos = state.player.transform.position;
 
         // First pick a random direction in which to spawn the note
@@ -62,7 +63,13 @@ public class NoteSpawner : MonoBehaviour
             notePos = playerPos + dir * dist;
         }
 
-        return Instantiate(state.notePickupPrefab, notePos, Quaternion.identity);
+        // Pick treble/bass clef randomly
+        GameObject prefab;
+        int rand = Random.Range(0, 2);
+        if (rand == 0) prefab = state.notePickupPrefab;
+        else prefab = state.notePickupPrefabTwo;
+
+        return Instantiate(prefab, notePos, Quaternion.identity);
     }
 
     // Check if a position is inaccessible to the player
