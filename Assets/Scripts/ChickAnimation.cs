@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChickAnimation : MonoBehaviour
@@ -8,9 +9,12 @@ public class ChickAnimation : MonoBehaviour
     Animator am;
     ChickScript cm;
     SpriteRenderer sr;
-
+    StateScript state;
+    
     void Start()
     {
+        state = GameObject.Find("State").GetComponent<StateScript>();
+
         am = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         cm = GetComponent<ChickScript>();
@@ -28,12 +32,16 @@ public class ChickAnimation : MonoBehaviour
         }
     }
 
+    // HERE
     void SpriteDirectionCheck() {
         if (cm.direction.x < 0) {
-            sr.flipX = true;
+            sr.flipX = false;
+            am.SetBool("isFacingRight",false);
         }
         else {
-            sr.flipX = false;
+            sr.flipX = true;
+            am.SetBool("isFacingRight",true);
         }
     }
+    
 }

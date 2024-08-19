@@ -17,7 +17,7 @@ public class EnemySpawnScript : MonoBehaviour
     private float timer;
     private float reduceTimer;
 
-    void Start()
+    void Awake()
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
         timer = cooldown;
