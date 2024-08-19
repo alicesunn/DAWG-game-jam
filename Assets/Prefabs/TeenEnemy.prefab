@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 935213676693113509}
   - component: {fileID: 6479793696486603070}
   - component: {fileID: 3634684993679416870}
+  - component: {fileID: 1653332882864768413}
+  - component: {fileID: 6412689790292324346}
   m_Layer: 0
   m_Name: TeenEnemy
   m_TagString: Teen
@@ -175,3 +177,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6fba8203a5df443b963242d90365a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dir: {x: 0, y: 0}
+--- !u!114 &1653332882864768413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5210331414485243942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9633cf4c7d93fa04ca202cb1654122d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &6412689790292324346
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5210331414485243942}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7d7b6ea22e700c24ab1c1de084ed49e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

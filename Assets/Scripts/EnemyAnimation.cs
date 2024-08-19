@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KidAnimation : MonoBehaviour
+public class EnemyAnimation : MonoBehaviour
 {
     Animator am;
     AIChase em;
@@ -18,13 +18,15 @@ public class KidAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (em.isMoving()) {
-            am.SetBool("Move", true);
-            SpriteDirectionCheck();
-        }
-        else {
-            am.SetBool("Move", false);
-        }
+        am.SetBool("Move", true);
+        SpriteDirectionCheck();
+        // if (em.isMoving()) {
+        //     am.SetBool("Move", true);
+        //     SpriteDirectionCheck();
+        // }
+        // else {
+        //     am.SetBool("Move", false);
+        // }
     }
 
     void SpriteDirectionCheck() {
