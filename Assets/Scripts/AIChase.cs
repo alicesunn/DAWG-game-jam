@@ -10,6 +10,8 @@ public class AIChase : MonoBehaviour
     private Health playerHealth;
     private Rigidbody2D body;
 
+    public Vector2 dir = new(0.0f, 0.0f);
+
     private float speed;
 
     void Start()
@@ -28,7 +30,7 @@ public class AIChase : MonoBehaviour
     // Walk towards player
     void Update()
     {
-        Vector3 dir = (state.player.transform.position - transform.position).normalized;
+        dir = (state.player.transform.position - transform.position).normalized;
         body.velocity = dir * speed;
     }
 
@@ -38,5 +40,9 @@ public class AIChase : MonoBehaviour
         {
             playerHealth.TakeDamage(1.0f);
         }
+    }
+
+    public bool isMoving() {
+        return speed > 0;
     }
 }

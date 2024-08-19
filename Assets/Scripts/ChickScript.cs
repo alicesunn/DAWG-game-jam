@@ -49,7 +49,7 @@ public class ChickScript : MonoBehaviour
     private void MoveTowardsParent()
     {
         float dist = Vector2.Distance(parent.transform.position, body.transform.position);
-        direction = (parent.transform.position - body.transform.position).normalized;
+        direction = (parent.transform.position - body.transform.position).normalized; 
 
         // We want the baby to lag behind a little when it first starts moving,
         // then adjust speed based on distance from parent
