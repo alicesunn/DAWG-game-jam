@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class PlayerScript : MonoBehaviour
@@ -11,6 +12,12 @@ public class PlayerScript : MonoBehaviour
 
     private Rigidbody2D body;
     private StateScript state;
+    //healthBar prefab dragged into hiearchy
+    public Image healthBar;
+    //Refrenching the attached Health Script
+    public Health healthAmount;
+    //whatever we set the players total health
+    private float PLAYERTOTALHEALTH = 10;
 
     void Start()
     {
@@ -19,11 +26,15 @@ public class PlayerScript : MonoBehaviour
 
         state = GameObject.Find("State").GetComponent<StateScript>();
         body = GetComponent<Rigidbody2D>();
+        //Helath component attached to player
+        healthAmount = GetComponent<Health>();
+
     }
 
     void Update()
     {
         HandleMovement();
+        HealthBar();
     }
 
     void HandleMovement()
@@ -39,5 +50,10 @@ public class PlayerScript : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, -state.maxX, state.maxX);
         pos.y = Mathf.Clamp(pos.y, -state.maxY, state.maxY);
         transform.position = pos;
+    }
+
+    void HealthBar(){
+        //Whatever the total health of player is 
+        healthBar.fillAmount = healthAmount.health / PLAYERTOTALHEALTH;
     }
 }
