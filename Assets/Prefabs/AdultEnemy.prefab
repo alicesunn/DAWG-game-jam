@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3634684993679416870}
   - component: {fileID: 4786263170820540770}
   - component: {fileID: 1971847114549757797}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AdultEnemy
   m_TagString: Adult
   m_Icon: {fileID: 0}

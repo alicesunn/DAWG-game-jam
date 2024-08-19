@@ -39,10 +39,6 @@ public class AIChase : MonoBehaviour
         if(collision.gameObject.name == state.player.name)
         {
             playerHealth.TakeDamage(1.0f);
-            //Debug.Log("player hp = " + playerHealth.health + " (-" + 1 + ")");
-
-            // for testing, lets make player collision also do damage to the enemy
-            gameObject.GetComponent<Health>().TakeDamage(1.0f);
         }
     }
 

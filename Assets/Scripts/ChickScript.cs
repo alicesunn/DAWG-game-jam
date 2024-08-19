@@ -16,8 +16,8 @@ public class ChickScript : MonoBehaviour
     public float constraintRadius = 1.5f; // maintain this distance on move/stop
     public Vector2 direction = new(0.0f, 0.0f);
 
-    private Rigidbody2D body;
     private StateScript state;
+    private Rigidbody2D body;
     private SpriteRenderer rend;
 
     private float fastSpeed;
@@ -84,6 +84,11 @@ public class ChickScript : MonoBehaviour
             colorT = 0.0f;
             colorInd = nextInd;
         }
+    }
+
+    public void Activate()
+    {
+        isSinging = true;
     }
     
     public bool IsMoving() {

@@ -6,8 +6,13 @@ public class NoteSpawner : MonoBehaviour
 {
     private StateScript state;
 
-    private const float MIN_SPAWN_RADIUS = 30.0f; // notes will at least spawn this far away
-    private const float MAX_SPAWN_RADIUS = 50.0f; // notes will at most spawn this far away
+    private const float NOTE_COOLDOWN = 0.0f;
+    private const float MIN_SPAWN_RADIUS = 30.0f;
+    private const float MAX_SPAWN_RADIUS = 50.0f;
+
+    private float noteTimer = 0.0f;
+
+    private float debugTimer = NOTE_COOLDOWN;
 
     void Start()
     {
@@ -16,7 +21,24 @@ public class NoteSpawner : MonoBehaviour
 
     void Update()
     {
-        if (!state.notePickup) state.notePickup = SpawnNote();
+        // Spawn new note [cooldown] seconds after previous note was picked up
+        if (!state.notePickup) {
+            if (noteTimer > 0.0f)
+            {
+                noteTimer -= Time.deltaTime;
+                if (noteTimer < debugTimer)
+                {
+                    Debug.Log("time until next note ~" + noteTimer);
+                    debugTimer -= 5.0f;
+                }
+            }
+            else
+            {
+                state.notePickup = SpawnNote();
+                noteTimer = NOTE_COOLDOWN;
+                debugTimer = NOTE_COOLDOWN - 5.0f;
+}
+        }
     }
 
     public GameObject SpawnNote()

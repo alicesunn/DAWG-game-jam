@@ -6,12 +6,13 @@ public class EnemySpawnScript : MonoBehaviour
 {
     private StateScript state;
 
+    private const float REDUCE_TIME = 30.0f;       // every [reduce] seconds,
+    private const float COOLDOWN_DECREMENT = 0.5f; // decrease cooldown by [decrement]
+    private const float MIN_COOLDOWN = 2.5f;
+    private const float RADIUS = 10.0f; // enemies will spawn this far away
     private const float KID_CHANCE = 0.1f;  // 0 - 0.1 -> spawn kid (10%)
     private const float TEEN_CHANCE = 0.4f; // 0.1 - 0.4 -> spawn teen (30%)
                                             // else, spawn adult (60%)
-    private const float REDUCE_TIME = 10.0f;   // every [reduce] seconds,
-    private const float COOLDOWN_DECREMENT = 0.5f; // decrease cooldown by [decrement]
-    private const float RADIUS = 15.0f; // enemies will spawn this far away
 
     private float cooldown = 5.0f;
     private float timer;
@@ -21,6 +22,7 @@ public class EnemySpawnScript : MonoBehaviour
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
         timer = cooldown;
+        reduceTimer = REDUCE_TIME;
     }
 
     void Update()
@@ -35,10 +37,9 @@ public class EnemySpawnScript : MonoBehaviour
 
         // Decrease cooldown every [reduce] seconds
         if (reduceTimer > 0.0f) reduceTimer -= Time.deltaTime;
-        else {
+        else if (cooldown > MIN_COOLDOWN) {
             reduceTimer = REDUCE_TIME;
             cooldown -= COOLDOWN_DECREMENT;
-            Debug.Log("cooldown: " + cooldown);
         }
     }
 
@@ -58,6 +59,7 @@ public class EnemySpawnScript : MonoBehaviour
         Vector3 dir = new Vector3((float)Mathf.Cos(theta), (float)Mathf.Sin(theta), 0.0f).normalized;
         Vector3 pos = playerPos + dir * RADIUS;
 
-        Instantiate(prefab, pos, Quaternion.identity);
+        GameObject e = Instantiate(prefab, pos, Quaternion.identity);
+        state.enemies.Add(e);
     }
 }

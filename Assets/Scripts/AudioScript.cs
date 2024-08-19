@@ -70,7 +70,7 @@ public class AudioScript : MonoBehaviour
         }
 
         // activate next chick in line
-        state.chicks[layerIndex].GetComponent<ChickScript>().isSinging = true;
+        state.chicks[layerIndex].GetComponent<ChickScript>().Activate();
 
         layerIndex++;
     }

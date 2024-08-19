@@ -14,9 +14,7 @@ GameObject:
   - component: {fileID: 935213676693113509}
   - component: {fileID: 6479793696486603070}
   - component: {fileID: 3634684993679416870}
-  - component: {fileID: 1653332882864768413}
-  - component: {fileID: 6412689790292324346}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TeenEnemy
   m_TagString: Teen
   m_Icon: {fileID: 0}
