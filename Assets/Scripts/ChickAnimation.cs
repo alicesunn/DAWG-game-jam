@@ -36,11 +36,11 @@ public class ChickAnimation : MonoBehaviour
     void SpriteDirectionCheck() {
         if (cm.direction.x < 0) {
             sr.flipX = false;
-            am.SetBool("isFacingRight",false);
+
         }
         else {
             sr.flipX = true;
-            am.SetBool("isFacingRight",true);
+
         }
     }
     
