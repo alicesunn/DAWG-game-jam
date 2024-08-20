@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     private float speed;
 
     // hit points stuff
-    private const int MAX_HEALTH = 1000;
+    private const int MAX_HEALTH = 5;
     private Health hp;
     private TextMeshProUGUI hpText;
 
@@ -58,22 +58,14 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        if (loadDefeat)
-        {
-            hitSoundLength -= Time.deltaTime;
-            if (hitSoundLength < 0.0f) SceneManager.LoadScene("Defeat");
-        }
-        else
-        {
-            HandleMovement();
+        HandleMovement();
 
-            if (flashTimer > 0.0f)
+        if (flashTimer > 0.0f)
+        {
+            flashTimer -= Time.deltaTime;
+            if (flashTimer < 0.0f)
             {
-                flashTimer -= Time.deltaTime;
-                if (flashTimer < 0.0f)
-                {
-                    rend.color = Color.white;
-                }
+                rend.color = Color.white;
             }
         }
     }
@@ -88,8 +80,7 @@ public class PlayerScript : MonoBehaviour
 
         if (hp.health <= 0)
         {
-            loadDefeat = true;
-            body.velocity = Vector2.zero;
+            SceneManager.LoadScene("Defeat");
         }
     }
 

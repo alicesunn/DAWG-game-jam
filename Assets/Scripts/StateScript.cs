@@ -166,8 +166,8 @@ public class StateScript : MonoBehaviour
         else
         {
             chickScripts[music.layerIndex].OnPickup(notesSoFar);
-
-            if (music.layerIndex >= layerCount - 1) SceneManager.LoadScene("Win");
         }
+
+        if (music.layerIndex >= layerCount - 1) SceneManager.LoadScene("Win");
     }
 }

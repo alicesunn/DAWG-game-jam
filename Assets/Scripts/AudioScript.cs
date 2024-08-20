@@ -30,7 +30,7 @@ public class AudioScript : MonoBehaviour
                 // First track always playing
                 momTrack = allTracks[i];
                 momTrack.mute = false;
-                momTrack.volume = volume;
+                momTrack.volume = volume - 0.2f;
             }
             else
             {
@@ -40,11 +40,6 @@ public class AudioScript : MonoBehaviour
         }
 
         layerIndex = 0;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) PlayNextLayer();
     }
 
     public void PlayNextLayer()
