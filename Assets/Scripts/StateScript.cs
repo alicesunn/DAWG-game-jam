@@ -15,8 +15,8 @@ public class StateScript : MonoBehaviour
     public string playerName = "Player";
     public string musicControllerName = "AudioController";
     public string cameraName = "Main Camera";
+    public string enemySpawnerName = "EnemySpawner";
     public string healthBarName = "HealthBar";
-
 
     // Tags
     public string playerTag = "Bird";
@@ -57,16 +57,17 @@ public class StateScript : MonoBehaviour
     // Unique components
     [HideInInspector] public Camera cam;
     [HideInInspector] public AudioScript music;
-    
-    
-    
+    [HideInInspector] public EnemySpawnScript enemySpawner;
+    [HideInInspector] public ShootScript playerShoot;
+
     // Data
     [HideInInspector] public GameObject[] chicks;
     [HideInInspector] public List<GameObject> enemies;
-    [HideInInspector] public float playerSpeed = 6.0f;
-    [HideInInspector] public float chickSpeed = 5.0f;
-
     private HashSet<string> enemyTags;
+    private ChickScript[] chickScripts; // prevent get calls on pickup to avoid lag
+
+    [HideInInspector] public float playerSpeed = 12.0f;
+    [HideInInspector] public float chickSpeed = 11.0f;
     private int notesSoFar = 0;
     private const int NOTES_PER_CHICK = 3;
 
@@ -88,8 +89,10 @@ public class StateScript : MonoBehaviour
         player = GameObject.Find(playerName);
         cam = GameObject.Find(cameraName).GetComponent<Camera>();
         music = GameObject.Find(musicControllerName).GetComponent<AudioScript>();
+        enemySpawner = GameObject.Find(enemySpawnerName).GetComponent<EnemySpawnScript>();
         enemyTags = new HashSet<string>{kidTag, teenTag, adultTag};
         enemies = new List<GameObject>();
+        playerShoot = player.GetComponent<ShootScript>();
     }
 
     // Initial object spawning
@@ -97,13 +100,15 @@ public class StateScript : MonoBehaviour
     {
         // Create layerCount number of chicks and assign line relationships
         chicks = new GameObject[layerCount];
+        chickScripts = new ChickScript[layerCount];
         GameObject p = player;
         for (int i = 0; i < layerCount; i++)
         {
             chicks[i] = Instantiate(chickPrefab, player.transform.position, Quaternion.identity);
+            if (i > 0) chickScripts[i - 1].child = chicks[i];
 
-            if (p != player) p.GetComponent<ChickScript>().child = chicks[i];
-            chicks[i].GetComponent<ChickScript>().parent = p;
+            chickScripts[i] = chicks[i].GetComponent<ChickScript>();
+            chickScripts[i].parent = p;
             p = chicks[i];
         }
 
@@ -152,15 +157,16 @@ public class StateScript : MonoBehaviour
     public void PickUpNote()
     {
         notesSoFar++;
-
+        Debug.Log("notessofar = " + notesSoFar);
         if (notesSoFar == NOTES_PER_CHICK)
         {
             music.PlayNextLayer();
             notesSoFar = 0;
+            enemySpawner.DecreaseCooldown();
         }
         else
         {
-            chicks[music.layerIndex].GetComponent<ChickScript>().OnPickup(notesSoFar);
+            chickScripts[music.layerIndex].OnPickup(notesSoFar);
         }
     }
 
