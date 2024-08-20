@@ -12,6 +12,8 @@ TagManager:
   - Teen
   - Adult
   - Bullet
+  - CreditButton
+  - MenuButton
   layers:
   - Default
   - TransparentFX
