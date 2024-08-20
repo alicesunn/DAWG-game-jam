@@ -18,6 +18,7 @@ public class ChickScript : MonoBehaviour
     private StateScript state;
     private Rigidbody2D body;
     private ChickSpriteScript spriteScript;
+    private ShootScript chickShoot;
 
     [HideInInspector] public float fastSpeed;
     [HideInInspector] public float speed;
@@ -29,6 +30,7 @@ public class ChickScript : MonoBehaviour
         spriteScript = gameObject.GetComponentInChildren<ChickSpriteScript>();
         speed = state.chickSpeed;
         fastSpeed = state.chickSpeed * 1.3f;
+        chickShoot = GetComponent<ShootScript>();
     }
 
     // Update is called once per frame
@@ -70,6 +72,8 @@ public class ChickScript : MonoBehaviour
     {
         isSinging = true;
         spriteScript.Activate();
+        state.playerShoot.IncreaseSpeed();
+        chickShoot.IncreaseSpeed();
     }
     
     public bool IsMoving() {

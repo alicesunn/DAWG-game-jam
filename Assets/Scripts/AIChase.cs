@@ -42,6 +42,8 @@ public class AIChase : MonoBehaviour
         if(collision.gameObject.name == state.player.name)
         {
             playerHealth.TakeDamage(1.0f);
+            state.enemies.Remove(gameObject);
+            Destroy(gameObject);
         }
     }
 

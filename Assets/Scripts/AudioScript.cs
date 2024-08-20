@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 public class AudioScript : MonoBehaviour
 {
     [HideInInspector] public int layerIndex = 0; // layer that will next play when PlayNextLayer() is called
-    [HideInInspector] public float volume = 0.7f; // volume setting of master music layer
+    [HideInInspector] public float volume = 0.5f; // volume setting of master music layer
 
     private StateScript state;
     private AudioSource[] tracks; // each individual audio clip
@@ -38,6 +38,13 @@ public class AudioScript : MonoBehaviour
                 tracks[i - 1] = allTracks[i];
             }
         }
+
+        layerIndex = 0;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) PlayNextLayer();
     }
 
     public void PlayNextLayer()

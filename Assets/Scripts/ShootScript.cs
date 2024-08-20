@@ -57,4 +57,9 @@ public class ShootScript : MonoBehaviour
         return state.enemies.Count > 0
             && (!chickScript || chickScript.isSinging);
     }
+
+    public void IncreaseSpeed()
+    {
+        cooldown -= 0.25f;
+    }
 }
