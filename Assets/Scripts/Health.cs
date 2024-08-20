@@ -6,6 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public float health = 1;
+    [HideInInspector] public bool isPlayer = false;
 
     private StateScript state;
     private const float IFRAMES = 0.2f;
@@ -23,7 +24,7 @@ public class Health : MonoBehaviour
         iframeTimer = IFRAMES;
         health -= damage;
 
-        if (health <= 0) Defeated();
+        if (health <= 0 && !isPlayer) Defeated();
         
         return true;
     }
