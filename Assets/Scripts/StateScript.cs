@@ -41,6 +41,7 @@ public class StateScript : MonoBehaviour
     public GameObject bulletPrefabOne;
     public GameObject bulletPrefabTwo;
     public GameObject bulletPrefabThree;
+    public GameObject explosionPrefab;
 
     // Values
     [HideInInspector] public float maxX; // world
@@ -60,6 +61,7 @@ public class StateScript : MonoBehaviour
     [HideInInspector] public EnemySpawnScript enemySpawner;
     [HideInInspector] public ShootScript playerShoot;
     [HideInInspector] public PlayerScript playerScript;
+    [HideInInspector] public CameraScript cameraScript;
     [HideInInspector] public TextMeshProUGUI hpText;
     private AudioSource noteCollectAudio;
 
@@ -74,6 +76,11 @@ public class StateScript : MonoBehaviour
     private int notesSoFar = 0;
     private const int NOTES_PER_CHICK = 3;
 
+    private bool isWinning = false;
+    [HideInInspector] public bool startedWin = false;
+    private float winTimer = 0.0f;
+    private float timeToSpawnBuff = 6.0f;
+
     void Awake()
     {
         layerCount = 3;
@@ -85,6 +92,7 @@ public class StateScript : MonoBehaviour
         playerScript = player.GetComponent<PlayerScript>();
 
         cam = GameObject.Find(cameraName).GetComponent<Camera>();
+        cameraScript = cam.GetComponent<CameraScript>();
 
         music = GameObject.Find(musicControllerName).GetComponent<AudioScript>();
         noteCollectAudio = GetComponent<AudioSource>();
@@ -114,7 +122,21 @@ public class StateScript : MonoBehaviour
         // Indicator arrow
         arrow = Instantiate(arrowPrefab, player.transform.position, Quaternion.identity);
     }
-    
+
+    private void Update()
+    {
+        if (isWinning)
+        {
+            winTimer += Time.deltaTime;
+            if (winTimer >= timeToSpawnBuff)
+            {
+                Vector3 offset = new(0.0f, 0.2f, 10.0f);
+                Instantiate(explosionPrefab, cam.transform.position + offset, Quaternion.identity);
+                isWinning = false; // so we dont instantiate more than 1 explosion/buff guy
+            }
+        }
+    }
+
     // Finds the nearest enemy to the player
     public GameObject NearestEnemy()
     {
@@ -157,7 +179,6 @@ public class StateScript : MonoBehaviour
     {
         notesSoFar++;
         noteCollectAudio.PlayOneShot(noteCollectAudio.clip);
-        Debug.Log("music.layerindex before " + music.layerIndex);
         if (notesSoFar == NOTES_PER_CHICK)
         {
             music.PlayNextLayer();
@@ -169,7 +190,27 @@ public class StateScript : MonoBehaviour
             chickScripts[music.layerIndex].OnPickup(notesSoFar);
         }
 
-        Debug.Log("music.layerindex after " + music.layerIndex);
-        if (music.layerIndex >= layerCount) SceneManager.LoadScene("Win");
+        if (music.layerIndex >= layerCount) Win();
+    }
+
+    private void Win()
+    {
+        startedWin = true;
+        isWinning = true;
+        arrow.SetActive(false);
+        playerScript.OnWin();
+
+        foreach (ChickScript chick in chickScripts)
+        {
+            chick.OnWin();
+        }
+
+        enemySpawner.OnWin();
+    }
+
+    public void ExplodeEnemies(string etag)
+    {
+        GameObject[] es = GameObject.FindGameObjectsWithTag(etag);
+        for (int i = 0; i < es.Length; i++) Destroy(es[i]);
     }
 }

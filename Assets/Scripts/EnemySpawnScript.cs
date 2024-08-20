@@ -17,6 +17,8 @@ public class EnemySpawnScript : MonoBehaviour
     private float timer;
     private float reduceTimer;
 
+    private bool isWinning = false;
+
     void Awake()
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
@@ -26,24 +28,28 @@ public class EnemySpawnScript : MonoBehaviour
 
     void Update()
     {
-        // Spawn 1-3 enemies every [cooldown] seconds
-        if (timer > 0.0f) timer -= Time.deltaTime;
-        else if (state.enemies.Count < 100)
+        if (!isWinning)
         {
-            int num = Random.Range(1, 4);
-            for (int i = 0; i < num; i++)
+            // Spawn 1-3 enemies every [cooldown] seconds
+            if (timer > 0.0f) timer -= Time.deltaTime;
+            else if (state.enemies.Count < 100)
             {
-                SpawnEnemy();
+                int num = Random.Range(1, 4);
+                for (int i = 0; i < num; i++)
+                {
+                    SpawnEnemy();
+                }
+                timer = cooldown;
             }
-            timer = cooldown;
-        }
 
-        // Decrease cooldown every [reduce] seconds
-        if (reduceTimer > 0.0f) reduceTimer -= Time.deltaTime;
-        else if (cooldown > MIN_COOLDOWN) {
-            reduceTimer = REDUCE_TIME;
-            cooldown -= COOLDOWN_DECREMENT;
-            if (cooldown < MIN_COOLDOWN) cooldown = MIN_COOLDOWN;
+            // Decrease cooldown every [reduce] seconds
+            if (reduceTimer > 0.0f) reduceTimer -= Time.deltaTime;
+            else if (cooldown > MIN_COOLDOWN)
+            {
+                reduceTimer = REDUCE_TIME;
+                cooldown -= COOLDOWN_DECREMENT;
+                if (cooldown < MIN_COOLDOWN) cooldown = MIN_COOLDOWN;
+            }
         }
     }
 
@@ -51,7 +57,7 @@ public class EnemySpawnScript : MonoBehaviour
     {
         Vector3 playerPos = state.player.transform.position;
 
-        // *This RNG logic only works if kid chance <= teen chance <= adult chance
+        // *This RNG logic only works if kid chance <= teen chance
         GameObject prefab;
         float randomType = Random.Range(0.0f, 1.0f);
         if (randomType <= KID_CHANCE) prefab = state.kidPrefab;
@@ -76,6 +82,17 @@ public class EnemySpawnScript : MonoBehaviour
         {
             reduceTimer = REDUCE_TIME;
             cooldown -= COOLDOWN_DECREMENT;
+        }
+    }
+
+    public void OnWin()
+    {
+        isWinning = true;
+        // Spawn a bunch of enemies to surround player
+        for (int i = 0; i < 100; i++)
+        {
+            if (state.enemies.Count >= 100) break;
+            SpawnEnemy();
         }
     }
 }

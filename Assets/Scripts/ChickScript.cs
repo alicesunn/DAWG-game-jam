@@ -23,6 +23,10 @@ public class ChickScript : MonoBehaviour
     [HideInInspector] public float fastSpeed;
     [HideInInspector] public float speed;
 
+    private bool isWinning = false;
+    [HideInInspector] public float winTimer = 0.0f;
+    [HideInInspector] public float timeToFly = 5.0f;
+
     void Start()
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
@@ -36,7 +40,21 @@ public class ChickScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveTowardsParent();
+        if (!isWinning) MoveTowardsParent();
+        else
+        {
+            if (transform.position.y > state.cam.transform.position.y + 12.0f)
+            {
+                state.cameraScript.OnWin();
+                Destroy(gameObject);
+            }
+            else
+            {
+                // spin aggressively and shoot up after short delay
+                winTimer += Time.deltaTime;
+                if (winTimer > timeToFly) body.velocity = new(0.0f, 40.0f);
+            }
+        }
     }
 
     private void MoveTowardsParent()
@@ -66,6 +84,13 @@ public class ChickScript : MonoBehaviour
     public void OnPickup(int count)
     {
         spriteScript.OnPickup(count);
+    }
+
+    public void OnWin()
+    {
+        isWinning = true;
+        spriteScript.OnWin();
+        body.velocity = Vector2.zero;
     }
 
     public void Activate()

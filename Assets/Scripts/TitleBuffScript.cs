@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffScript : MonoBehaviour
+public class TitleBuffScript : MonoBehaviour
 {
     private float timer = 0.0f;
     private const float COOLDOWN = 4.0f;

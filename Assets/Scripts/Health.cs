@@ -24,6 +24,8 @@ public class Health : MonoBehaviour
         iframeTimer = IFRAMES;
         health -= damage;
 
+        if (damage == 2.0f) Debug.Log("took 2dgm");
+
         if (health <= 0 && !isPlayer) Defeated();
         
         return true;

@@ -22,6 +22,8 @@ public class ChickSpriteScript : MonoBehaviour
     private float rollDeg = 0.0f; // degrees not radians
     private Vector3 rollAxis = Vector3.zero;
 
+    private bool spinAggressively = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,15 +45,16 @@ public class ChickSpriteScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (chickScript.IsMoving()) HandleRoll();
+        HandleRoll();
 
         if (flashCount > 0 && !isSinging) Flash();
     }
 
     private void HandleRoll()
     {
-        // (tried to) speed up/slow down rolls with movement speed
-        rollSpeed = Mathf.Lerp(0.0f, MAX_ROLL_SPEED, chickScript.speed / chickScript.fastSpeed);
+        if (spinAggressively) rollSpeed = Mathf.Lerp(MAX_ROLL_SPEED, MAX_ROLL_SPEED * 10.0f, chickScript.winTimer / chickScript.timeToFly);
+        else rollSpeed = Mathf.Lerp(0.0f, MAX_ROLL_SPEED, chickScript.speed / chickScript.fastSpeed);
+
         rollAxis = chickScript.FacingRight() ? Vector3.back : Vector3.forward;
         transform.Rotate(rollSpeed * Time.deltaTime * rollAxis, Space.World);
     }
@@ -80,5 +83,10 @@ public class ChickSpriteScript : MonoBehaviour
 
             if (rend.sprite == normalSprite) flashCount--;
         }
+    }
+
+    public void OnWin()
+    {
+        spinAggressively = true;
     }
 }
