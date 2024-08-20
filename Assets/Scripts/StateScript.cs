@@ -68,6 +68,8 @@ public class StateScript : MonoBehaviour
         {
             SceneManager.LoadScene("Defeat");
         }
+        
+
     }
 
     void Awake()
