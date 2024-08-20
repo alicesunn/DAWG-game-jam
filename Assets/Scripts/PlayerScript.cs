@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     private float speed;
 
     // hit points stuff
-    private const int MAX_HEALTH = 5;
+    private const int MAX_HEALTH = 1000;
     private Health hp;
     private TextMeshProUGUI hpText;
 
@@ -45,7 +45,7 @@ public class PlayerScript : MonoBehaviour
 
         // Health counting
         hp = GetComponent<Health>();
-        hp.health = 5;
+        hp.health = MAX_HEALTH;
         hp.isPlayer = true;
         hpText = state.hpText;
         hpText.SetText(hp.health.ToString());
@@ -80,8 +80,11 @@ public class PlayerScript : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (hp.TakeDamage(damage)) hpText.SetText(hp.health.ToString());
-        PlayHitEffect();
+        if (hp.TakeDamage(damage))
+        {
+            hpText.SetText(hp.health.ToString());
+            PlayHitEffect();
+        }
 
         if (hp.health <= 0)
         {

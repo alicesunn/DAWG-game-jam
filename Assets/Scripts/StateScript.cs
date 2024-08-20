@@ -61,6 +61,7 @@ public class StateScript : MonoBehaviour
     [HideInInspector] public ShootScript playerShoot;
     [HideInInspector] public PlayerScript playerScript;
     [HideInInspector] public TextMeshProUGUI hpText;
+    private AudioSource noteCollectAudio;
 
     // Data
     [HideInInspector] public GameObject[] chicks;
@@ -78,11 +79,16 @@ public class StateScript : MonoBehaviour
         layerCount = 3;
         maxX = 100.0f;
         maxY = 100.0f;
+
         player = GameObject.Find(playerName);
         playerShoot = player.GetComponent<ShootScript>();
         playerScript = player.GetComponent<PlayerScript>();
+
         cam = GameObject.Find(cameraName).GetComponent<Camera>();
+
         music = GameObject.Find(musicControllerName).GetComponent<AudioScript>();
+        noteCollectAudio = GetComponent<AudioSource>();
+
         enemySpawner = GameObject.Find(enemySpawnerName).GetComponent<EnemySpawnScript>();
         enemyTags = new HashSet<string>{kidTag, teenTag, adultTag};
         enemies = new List<GameObject>();
@@ -150,7 +156,7 @@ public class StateScript : MonoBehaviour
     public void PickUpNote()
     {
         notesSoFar++;
-        Debug.Log("notessofar = " + notesSoFar);
+        noteCollectAudio.PlayOneShot(noteCollectAudio.clip);
         if (notesSoFar == NOTES_PER_CHICK)
         {
             music.PlayNextLayer();
@@ -160,7 +166,8 @@ public class StateScript : MonoBehaviour
         else
         {
             chickScripts[music.layerIndex].OnPickup(notesSoFar);
+
+            if (music.layerIndex >= layerCount - 1) SceneManager.LoadScene("Win");
         }
     }
-
 }

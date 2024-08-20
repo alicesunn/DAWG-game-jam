@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 205061288}
   - component: {fileID: 205061287}
   - component: {fileID: 205061286}
+  - component: {fileID: 205061289}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -348,6 +349,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604008448}
   m_CullTransparentMesh: 1
+>>>>>>> main
 --- !u!1 &741328142
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,6 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475a7c7ab104619488703d74aaa5089d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  click: {fileID: 0}
 --- !u!114 &1127161553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1059,6 +1062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475a7c7ab104619488703d74aaa5089d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  click: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
