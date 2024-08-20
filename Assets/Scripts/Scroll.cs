@@ -4,36 +4,45 @@ using UnityEngine;
 
 public class Scroll : MonoBehaviour
 {
-    private bool startScroll;
-    private int maxScroll;
 
-    private Vector3 dir;
+    private Vector3 SCROLL_DIR = new(0.0f, 1.0f, 0.0f);
 
-    public GameObject camButton; 
-
+    public GameObject creditsButton;
     public GameObject menuButton;
+    public GameObject menuButtonBottom;
+
+    private const float SCROLL_SPEED = 2.0f;
+    private const float MAX_SCROLL = 58.0f; // stop slightly before exact picture end
+    private AudioSource ohYeah;
+    private bool startScroll;
+    private bool playedOhYeah = false;
 
     // Start is called before the first frame update
     void Start()
     {
         startScroll = false;
-        dir = new Vector3(0.0f, 1.0f, 0.0f);
-        camButton = GameObject.Find("Credits");
-        menuButton = GameObject.Find("Main Menu");
-        maxScroll = 35;
+        ohYeah = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (startScroll == true && transform.position.y < maxScroll) {
-            transform.position += dir * Time.deltaTime * 3;
+        if (startScroll && transform.position.y < MAX_SCROLL) {
+            Vector3 delta = Time.deltaTime * SCROLL_SPEED * SCROLL_DIR;
+            transform.position += delta;
+            creditsButton.transform.position += delta;
+            menuButton.transform.position += delta;
+            menuButtonBottom.transform.position += delta;
+
+            if (transform.position.y >= 37.0f && !playedOhYeah)
+            {
+                ohYeah.Play();
+                playedOhYeah = true;
+            }
         }
     }
 
-    public void setScrollToTrue() {
+    public void SetScrollToTrue() {
         startScroll = true;
-        Destroy(camButton);
-        Destroy(menuButton);
     }
 }
