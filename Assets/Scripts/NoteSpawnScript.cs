@@ -74,7 +74,9 @@ public class NoteSpawner : MonoBehaviour
         }
 
         GameObject pickup = Instantiate(prefab, notePos, Quaternion.identity);
-        pickup.GetComponent<NoteHit>().SetRotate(angle);
+        NoteHit p = pickup.GetComponent<NoteHit>();
+        p.SetRotate(angle);
+        p.SetState(state);
         return pickup;
     }
 

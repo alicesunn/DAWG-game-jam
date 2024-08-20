@@ -64,6 +64,8 @@ public class EnemySpawnScript : MonoBehaviour
         Vector3 pos = playerPos + dir * RADIUS;
 
         GameObject e = Instantiate(prefab, pos, Quaternion.identity);
+        e.GetComponent<Health>().SetState(state);
+        e.GetComponent<AIChase>().SetState(state);
         state.enemies.Add(e);
     }
 }
