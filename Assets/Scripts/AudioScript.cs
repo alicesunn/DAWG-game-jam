@@ -11,26 +11,33 @@ public class AudioScript : MonoBehaviour
 
     private StateScript state;
     private AudioSource[] tracks; // each individual audio clip
-
-    void Awake()
-    {
-        // Set all child tracks to play (muted) at same time
-        tracks = GetComponentsInChildren<AudioSource>();
-        foreach (var track in tracks)
-        {
-            track.PlayScheduled(AudioSettings.dspTime + 1.0f);
-            track.loop = true;
-            track.mute = true;
-        }
-
-        // First track always playing
-        tracks[0].mute = false;
-        tracks[0].volume = volume;
-    }
+    private AudioSource momTrack = null; // the layer that's always playing
 
     void Start()
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
+
+        // Set all music layers to start playing at same time while muted
+        AudioSource[] allTracks = GetComponentsInChildren<AudioSource>();
+        tracks = new AudioSource[state.layerCount];
+        double curTime = AudioSettings.dspTime;
+        for (int i = 0; i < allTracks.Length; i++)
+        {
+            allTracks[i].PlayScheduled(curTime + 1.0f);
+            allTracks[i].loop = true;
+            if (!momTrack)
+            {
+                // First track always playing
+                momTrack = allTracks[i];
+                momTrack.mute = false;
+                momTrack.volume = volume;
+            }
+            else
+            {
+                allTracks[i].mute = true;
+                tracks[i - 1] = allTracks[i];
+            }
+        }
     }
 
     public void PlayNextLayer()
@@ -38,8 +45,8 @@ public class AudioScript : MonoBehaviour
         if (layerIndex >= state.layerCount) return;
 
         // unmute layer
-        tracks[layerIndex + 1].mute = false;
-        tracks[layerIndex + 1].volume = volume;
+        tracks[layerIndex].mute = false;
+        tracks[layerIndex].volume = volume;
 
         // activate next chick in line
         state.chicks[layerIndex].GetComponent<ChickScript>().Activate();

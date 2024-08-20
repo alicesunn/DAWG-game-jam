@@ -17,7 +17,7 @@ public class ChickSpriteScript : MonoBehaviour
     private float flashStart = 0.0f;
     private int flashCount = 0;
 
-    private const float MAX_ROLL_SPEED = 800.0f;
+    private const float MAX_ROLL_SPEED = 300.0f;
     private float rollSpeed = 0.0f;
     private float rollDeg = 0.0f; // degrees not radians
     private Vector3 rollAxis = Vector3.zero;
@@ -45,7 +45,7 @@ public class ChickSpriteScript : MonoBehaviour
     {
         HandleRoll();
 
-        if (flashCount > 0) Flash();
+        if (flashCount > 0 && !isSinging) Flash();
     }
 
     private void HandleRoll()

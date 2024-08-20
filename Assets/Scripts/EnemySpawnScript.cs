@@ -9,7 +9,7 @@ public class EnemySpawnScript : MonoBehaviour
     private const float REDUCE_TIME = 30.0f;       // every [reduce] seconds,
     private const float COOLDOWN_DECREMENT = 0.5f; // decrease cooldown by [decrement]
     private const float MIN_COOLDOWN = 2.5f;
-    private const float RADIUS = 10.0f; // enemies will spawn this far away
+    private const float RADIUS = 20.0f; // enemies will spawn this far away
     private const float KID_CHANCE = 0.1f;  // 0 - 0.1 -> spawn kid (10%)
     private const float TEEN_CHANCE = 0.4f; // 0.1 - 0.4 -> spawn teen (30%)
                                             // else, spawn adult (60%)
@@ -27,11 +27,15 @@ public class EnemySpawnScript : MonoBehaviour
 
     void Update()
     {
-        // Spawn an enemy every [cooldown] seconds
+        // Spawn 1-3 enemies every [cooldown] seconds
         if (timer > 0.0f) timer -= Time.deltaTime;
         else if (state.enemies.Count < 100)
         {
-            SpawnEnemy();
+            int num = Random.Range(1, 4);
+            for (int i = 0; i < num; i++)
+            {
+                SpawnEnemy();
+            }
             timer = cooldown;
         }
 
