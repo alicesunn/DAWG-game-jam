@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,10 @@ public class PlayerScript : MonoBehaviour
     private StateScript state;
     private float speed;
 
+    //hit points stuff
+    private Health hitBoxPoints;
+    private float life;
+    private TextMeshProUGUI myMessage;
     void Start()
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
@@ -23,11 +28,16 @@ public class PlayerScript : MonoBehaviour
 
         // Start at origin
         transform.position = Vector3.zero;
+        //Health
+        hitBoxPoints = GetComponent<Health>();
+        myMessage = GameObject.Find("Text").GetComponent<TextMeshProUGUI>();
+
     }
 
     void Update()
     {
         HandleMovement();
+        MyHealth();
     }
 
     private void HandleMovement()
@@ -48,5 +58,8 @@ public class PlayerScript : MonoBehaviour
         Vector3 scale = transform.localScale;
         if ((direction.x < 0 && scale.x > 0) || (direction.x > 0 && scale.x < 0)) scale.x *= -1;
         transform.localScale = scale;
+    }
+    private void MyHealth(){
+        myMessage.text = "Health: " + hitBoxPoints.health.ToString();
     }
 }

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // A class for scripts to find commonly used data/references.
 // All other scripts should reference state variables instead of finding them themselves
@@ -12,6 +15,8 @@ public class StateScript : MonoBehaviour
     public string playerName = "Player";
     public string musicControllerName = "AudioController";
     public string cameraName = "Main Camera";
+    public string healthBarName = "HealthBar";
+
 
     // Tags
     public string playerTag = "Bird";
@@ -46,11 +51,15 @@ public class StateScript : MonoBehaviour
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject notePickup;
     [HideInInspector] public GameObject arrow;
+    [HideInInspector] public Canvas hitPointsText;
+
 
     // Unique components
     [HideInInspector] public Camera cam;
     [HideInInspector] public AudioScript music;
-
+    
+    
+    
     // Data
     [HideInInspector] public GameObject[] chicks;
     [HideInInspector] public List<GameObject> enemies;
@@ -68,6 +77,7 @@ public class StateScript : MonoBehaviour
         {
             SceneManager.LoadScene("Defeat");
         }
+
     }
 
     void Awake()
@@ -153,4 +163,5 @@ public class StateScript : MonoBehaviour
             chicks[music.layerIndex].GetComponent<ChickScript>().OnPickup(notesSoFar);
         }
     }
+
 }
