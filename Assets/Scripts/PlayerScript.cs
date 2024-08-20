@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,7 +16,7 @@ public class PlayerScript : MonoBehaviour
     private float speed;
 
     // hit points stuff
-    private const int MAX_HEALTH = 105;
+    private const int MAX_HEALTH = 5;
     private Health hp;
     private TextMeshProUGUI hpText;
 
@@ -27,11 +26,13 @@ public class PlayerScript : MonoBehaviour
     private float flashTimer = -1.0f;
 
     // for shoot/hit vfx
-    private AudioSource birdAudio;
     public AudioClip hitSound;
+    private AudioSource birdAudio;
 
-    private float hitSoundLength = 0.65625f;
-    private bool loadDefeat = false;
+    private bool playingWin = false;
+
+    // for disable scripts on win
+    private ShootScript shoot;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class PlayerScript : MonoBehaviour
         speed = state.playerSpeed;
         body = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
+        shoot = GetComponent<ShootScript>();
 
         // Start at origin
         transform.position = Vector3.zero;
@@ -58,6 +60,8 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
+        if (playingWin) return;
+
         HandleMovement();
 
         if (flashTimer > 0.0f)
@@ -70,8 +74,17 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public void OnWin()
+    {
+        rend.color = Color.white;
+        playingWin = true;
+        body.velocity = Vector2.zero;
+        shoot.enabled = false;
+    }
+
     public void TakeDamage(int damage)
     {
+        if (playingWin) return;
         if (hp.TakeDamage(damage))
         {
             hpText.SetText(hp.health.ToString());

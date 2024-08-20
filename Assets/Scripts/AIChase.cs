@@ -10,15 +10,16 @@ public class AIChase : MonoBehaviour
     //private Rigidbody2D body;
 
     private float speed;
+    private float magLimit;
 
     void Start()
     {
-        //body = GetComponent<Rigidbody2D>();
-
         // Vary speed depending on if object holding this instance is a kid/teen/adult
         if (gameObject.CompareTag(state.kidTag)) speed = state.playerSpeed * 1.1f;
         else if (gameObject.CompareTag(state.teenTag)) speed = state.playerSpeed * 0.8f;
         else speed = state.playerSpeed * 0.6f;
+
+        magLimit = Random.Range(5.0f, 15.0f);
     }
 
     // Walk towards player
@@ -32,13 +33,18 @@ public class AIChase : MonoBehaviour
         Vector3 scale = transform.localScale;
         if ((dir.x < 0 && scale.x > 0) || (dir.x > 0 && scale.x < 0)) scale.x *= -1;
         transform.localScale = scale;
+
+        if (state.startedWin && speed > 0.0f && (state.player.transform.position - transform.position).magnitude <= magLimit)
+        {
+            speed = 0.0f;
+            GetComponent<Rigidbody2D>().simulated = false;
+        }
     }
 
     // Damage player
     private void OnCollisionStay2D(Collision2D collision){
         if(collision.gameObject.name == state.player.name)
         {
-
             state.playerScript.TakeDamage(1);
             state.enemies.Remove(gameObject);
             Destroy(gameObject);

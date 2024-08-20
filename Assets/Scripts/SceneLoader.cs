@@ -21,4 +21,8 @@ public class SceneLoader : MonoBehaviour
     {
         src.PlayOneShot(click);
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

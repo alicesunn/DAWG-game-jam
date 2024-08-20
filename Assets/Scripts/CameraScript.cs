@@ -16,6 +16,8 @@ public class CameraScript : MonoBehaviour
     // Child of camera so that it can stay in place in pov
     [HideInInspector] public TextMeshProUGUI hpText;
 
+    private bool isWinning = false;
+
     private void Awake()
     {
         state = GameObject.Find("State").GetComponent<StateScript>();
@@ -32,8 +34,24 @@ public class CameraScript : MonoBehaviour
 
     private void Update()
     {
-        Vector3 targetPos = player.transform.position + offset;
+        Vector3 targetPos;
+        if (isWinning)
+        {
+            // Pan up to just above player
+            targetPos = player.transform.position + new Vector3(0.0f, 2.35f, 0.0f) + offset;
+        }
+        else
+        {
+            // Smooth follow camera on player
+            targetPos = player.transform.position + offset;
+        }
+
         Vector3 newPos = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime); // <- fuck you
         transform.position = newPos;
+    }
+
+    public void OnWin()
+    {
+        isWinning = true;
     }
 }

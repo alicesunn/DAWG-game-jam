@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
   hitSound: {fileID: 8300000, guid: aa92742681c276b4a83575d3ae791349, type: 3}
+  protection: {fileID: 0}
 --- !u!114 &896443513325228676
 MonoBehaviour:
   m_ObjectHideFlags: 0
