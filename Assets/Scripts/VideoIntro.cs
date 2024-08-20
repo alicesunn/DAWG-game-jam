@@ -1,22 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VideoIntro : MonoBehaviour
 {
-    public SceneLoader myScene;
-
-    void Awake()
-    {
-        myScene.LoadScene("IntroVideo");
-    }
-
-    void Start() {
-        
-    }
     void Update() {
-        if(Input.GetKeyDown("E")){
-            myScene.LoadScene("Title");
+        if(Input.GetKeyDown(KeyCode.E)){
+            SceneManager.LoadScene("Title");
         }
     }
 }
