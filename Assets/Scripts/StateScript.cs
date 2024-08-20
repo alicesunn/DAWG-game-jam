@@ -54,8 +54,8 @@ public class StateScript : MonoBehaviour
     // Data
     [HideInInspector] public GameObject[] chicks;
     [HideInInspector] public List<GameObject> enemies;
-    [HideInInspector] public float playerSpeed = 4.0f;
-    [HideInInspector] public float chickSpeed = 3.0f;
+    [HideInInspector] public float playerSpeed = 6.0f;
+    [HideInInspector] public float chickSpeed = 5.0f;
 
     private HashSet<string> enemyTags;
     private int notesSoFar = 0;
@@ -64,12 +64,10 @@ public class StateScript : MonoBehaviour
     private void Update()
     {
         // TESTING
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             SceneManager.LoadScene("Defeat");
         }
-        
-
     }
 
     void Awake()
