@@ -59,27 +59,19 @@ public class StateScript : MonoBehaviour
     [HideInInspector] public AudioScript music;
     [HideInInspector] public EnemySpawnScript enemySpawner;
     [HideInInspector] public ShootScript playerShoot;
+    [HideInInspector] public PlayerScript playerScript;
+    [HideInInspector] public TextMeshProUGUI hpText;
 
     // Data
     [HideInInspector] public GameObject[] chicks;
     [HideInInspector] public List<GameObject> enemies;
-    private HashSet<string> enemyTags;
     private ChickScript[] chickScripts; // prevent get calls on pickup to avoid lag
+    private HashSet<string> enemyTags;
 
     [HideInInspector] public float playerSpeed = 12.0f;
     [HideInInspector] public float chickSpeed = 11.0f;
     private int notesSoFar = 0;
     private const int NOTES_PER_CHICK = 3;
-
-    private void Update()
-    {
-        // TESTING
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SceneManager.LoadScene("Defeat");
-        }
-
-    }
 
     void Awake()
     {
@@ -87,12 +79,13 @@ public class StateScript : MonoBehaviour
         maxX = 100.0f;
         maxY = 100.0f;
         player = GameObject.Find(playerName);
+        playerShoot = player.GetComponent<ShootScript>();
+        playerScript = player.GetComponent<PlayerScript>();
         cam = GameObject.Find(cameraName).GetComponent<Camera>();
         music = GameObject.Find(musicControllerName).GetComponent<AudioScript>();
         enemySpawner = GameObject.Find(enemySpawnerName).GetComponent<EnemySpawnScript>();
         enemyTags = new HashSet<string>{kidTag, teenTag, adultTag};
         enemies = new List<GameObject>();
-        playerShoot = player.GetComponent<ShootScript>();
     }
 
     // Initial object spawning
