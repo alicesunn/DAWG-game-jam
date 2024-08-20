@@ -8,13 +8,12 @@ public class EnemySpawnScript : MonoBehaviour
 
     private const float REDUCE_TIME = 10.0f;       // every [reduce] seconds,
     private const float COOLDOWN_DECREMENT = 0.5f; // decrease cooldown by [decrement]
-    private const float MIN_COOLDOWN = 1.5f;
+    private const float MIN_COOLDOWN = 1.75f;
     private const float RADIUS = 20.0f; // enemies will spawn this far away
-    private const float KID_CHANCE = 0.1f;  // 0 - 0.1 -> spawn kid (10%)
-    private const float TEEN_CHANCE = 0.6f; // 0.1 - 0.4 -> spawn teen (30%)
-                                            // else, spawn adult (60%)
+    private const float KID_CHANCE = 0.1f;
+    private const float TEEN_CHANCE = 0.6f;
 
-    private float cooldown = 4.0f;
+    private float cooldown = 4.5f;
     private float timer;
     private float reduceTimer;
 
@@ -44,6 +43,7 @@ public class EnemySpawnScript : MonoBehaviour
         else if (cooldown > MIN_COOLDOWN) {
             reduceTimer = REDUCE_TIME;
             cooldown -= COOLDOWN_DECREMENT;
+            if (cooldown < MIN_COOLDOWN) cooldown = MIN_COOLDOWN;
         }
     }
 

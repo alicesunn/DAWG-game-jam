@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     private float speed;
 
     // hit points stuff
-    private const int MAX_HEALTH = 5;
+    private const int MAX_HEALTH = 105;
     private Health hp;
     private TextMeshProUGUI hpText;
 

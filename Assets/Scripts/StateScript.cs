@@ -157,6 +157,7 @@ public class StateScript : MonoBehaviour
     {
         notesSoFar++;
         noteCollectAudio.PlayOneShot(noteCollectAudio.clip);
+        Debug.Log("music.layerindex before " + music.layerIndex);
         if (notesSoFar == NOTES_PER_CHICK)
         {
             music.PlayNextLayer();
@@ -168,6 +169,7 @@ public class StateScript : MonoBehaviour
             chickScripts[music.layerIndex].OnPickup(notesSoFar);
         }
 
-        if (music.layerIndex >= layerCount - 1) SceneManager.LoadScene("Win");
+        Debug.Log("music.layerindex after " + music.layerIndex);
+        if (music.layerIndex >= layerCount) SceneManager.LoadScene("Win");
     }
 }

@@ -947,7 +947,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.15, y: -4.7}
+  m_AnchoredPosition: {x: -8.25, y: -4.7}
   m_SizeDelta: {x: 333.56, y: 48.0292}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &782489602
@@ -1243,7 +1243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.15, y: -2.5}
+  m_AnchoredPosition: {x: -8.25, y: -2.5}
   m_SizeDelta: {x: 333.56, y: 48.0292}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1462197345
@@ -1363,7 +1363,6 @@ GameObject:
   - component: {fileID: 1696154071}
   - component: {fileID: 1696154070}
   - component: {fileID: 1696154069}
-  - component: {fileID: 1696154068}
   - component: {fileID: 1696154067}
   - component: {fileID: 1696154066}
   m_Layer: 5
@@ -1390,7 +1389,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1696154068}
+        - m_Target: {fileID: 411125507}
           m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
           m_MethodName: LoadScene
           m_Mode: 5
@@ -1446,7 +1445,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1696154068}
+      - m_Target: {fileID: 411125507}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: PlayClick
         m_Mode: 1
@@ -1458,19 +1457,6 @@ MonoBehaviour:
           m_StringArgument: Title
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1696154068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696154065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 475a7c7ab104619488703d74aaa5089d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  click: {fileID: 8300000, guid: eb86c480045a61c418a32be094356b02, type: 3}
 --- !u!114 &1696154069
 MonoBehaviour:
   m_ObjectHideFlags: 0

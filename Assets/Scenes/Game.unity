@@ -345,58 +345,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioController
       objectReference: {fileID: 0}
-    - target: {fileID: 2916637832520904703, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_Volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3088293108219780635, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_Volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4202458149816750834, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_Volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5031734182985528623, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_Volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7027503674024237001, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7027503674024237001, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7027503674024237001, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750679961594249609, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750679961594249609, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8750679961594249609, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8973274833284739352, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8973274833284739352, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8973274833284739352, guid: a042ca68b32ed444aa4cf77fc5e01022, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
