@@ -38,10 +38,14 @@ public class ShootScript : MonoBehaviour
                 }
 
                 // Pick a random prefab to instantiate
+                GameObject prefabType;
                 int rand = Random.Range(1, 4);
-                if (rand == 1) Instantiate(state.bulletPrefabOne, gameObject.transform.position, Quaternion.identity);
-                else if (rand == 2) Instantiate(state.bulletPrefabTwo, gameObject.transform.position, Quaternion.identity);
-                else Instantiate(state.bulletPrefabThree, gameObject.transform.position, Quaternion.identity);
+                if (rand == 1) prefabType = state.bulletPrefabOne;
+                else if (rand == 2) prefabType = state.bulletPrefabTwo;
+                else prefabType = state.bulletPrefabThree;
+
+                GameObject bullet = Instantiate(prefabType, gameObject.transform.position, Quaternion.identity);
+                bullet.GetComponent<BulletScript>().SetState(state);
 
                 timer = cooldown;
             }

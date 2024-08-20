@@ -21,12 +21,13 @@ public class PlayerScript : MonoBehaviour
     private TextMeshProUGUI myMessage;
     void Start()
     {
-        // Start at origin
-        transform.position = Vector3.zero;
-
         state = GameObject.Find("State").GetComponent<StateScript>();
+        GetComponent<Health>().SetState(state);
         speed = state.playerSpeed;
         body = GetComponent<Rigidbody2D>();
+
+        // Start at origin
+        transform.position = Vector3.zero;
         //Health
         hitBoxPoints = GetComponent<Health>();
         myMessage = GameObject.Find("Text").GetComponent<TextMeshProUGUI>();

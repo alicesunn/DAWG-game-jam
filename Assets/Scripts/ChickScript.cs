@@ -11,7 +11,7 @@ public class ChickScript : MonoBehaviour
     [HideInInspector] public GameObject child; // bird that follows
 
     public bool isSinging = false;
-    private float constraintRadius = 1.5f; // maintain this distance on move/stop
+    private float constraintRadius = 2.0f; // maintain this distance on move/stop
     private Vector3 direction;
     private Vector3 velocity;
 

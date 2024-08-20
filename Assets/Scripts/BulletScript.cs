@@ -24,9 +24,6 @@ public class BulletScript : MonoBehaviour
 
     void Start()
     {
-        GetComponent<SpriteRenderer>().sortingOrder = -2; // render bullets below chicks as well
-        state = GameObject.Find("State").GetComponent<StateScript>();
-
         isWavy = Random.Range(0, 2) == 0;
 
         // some convoluted back and forth to get the right sine axes
@@ -69,5 +66,9 @@ public class BulletScript : MonoBehaviour
 
             if (bulletHits <= 0) Destroy(gameObject);
         }
+    }
+    public void SetState(StateScript s)
+    {
+        state = s;
     }
 }
