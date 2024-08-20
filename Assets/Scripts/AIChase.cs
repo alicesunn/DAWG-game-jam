@@ -7,17 +7,13 @@ using UnityEngine;
 public class AIChase : MonoBehaviour
 {
     private StateScript state;
-    private Health playerHealth;
-    private Rigidbody2D body;
-
-    public Vector2 dir = new(0.0f, 0.0f);
+    //private Rigidbody2D body;
 
     private float speed;
 
     void Start()
     {
-        playerHealth = state.player.GetComponent<Health>();
-        body = GetComponent<Rigidbody2D>();
+        //body = GetComponent<Rigidbody2D>();
 
         // Vary speed depending on if object holding this instance is a kid/teen/adult
         if (gameObject.CompareTag(state.kidTag)) speed = state.playerSpeed * 1.1f;
@@ -28,8 +24,9 @@ public class AIChase : MonoBehaviour
     // Walk towards player
     void Update()
     {
-        dir = (state.player.transform.position - transform.position).normalized;
-        body.velocity = dir * speed;
+        Vector3 dir = (state.player.transform.position - transform.position).normalized;
+        //body.velocity = dir * speed;
+        transform.position += Time.deltaTime * dir * speed;
 
         // Flip depending on direction
         Vector3 scale = transform.localScale;
@@ -41,7 +38,10 @@ public class AIChase : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision){
         if(collision.gameObject.name == state.player.name)
         {
-            playerHealth.TakeDamage(1.0f);
+
+            state.playerScript.TakeDamage(1);
+            state.enemies.Remove(gameObject);
+            Destroy(gameObject);
         }
     }
 

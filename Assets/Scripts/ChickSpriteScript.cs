@@ -13,7 +13,7 @@ public class ChickSpriteScript : MonoBehaviour
     private SpriteRenderer rend;
     private ChickScript chickScript;
 
-    private const float TIME_PER_FLASH = 0.2f;
+    private const float TIME_PER_FLASH = 0.3f;
     private float flashStart = 0.0f;
     private int flashCount = 0;
 
@@ -43,7 +43,7 @@ public class ChickSpriteScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleRoll();
+        if (chickScript.IsMoving()) HandleRoll();
 
         if (flashCount > 0 && !isSinging) Flash();
     }
