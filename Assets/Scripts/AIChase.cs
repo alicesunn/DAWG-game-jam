@@ -16,7 +16,6 @@ public class AIChase : MonoBehaviour
 
     void Start()
     {
-        state = GameObject.Find("State").GetComponent<StateScript>();
         playerHealth = state.player.GetComponent<Health>();
         body = GetComponent<Rigidbody2D>();
 
@@ -48,5 +47,10 @@ public class AIChase : MonoBehaviour
 
     public bool isMoving() {
         return speed > 0;
+    }
+
+    public void SetState(StateScript s)
+    {
+        state = s;
     }
 }

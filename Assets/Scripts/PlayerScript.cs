@@ -16,12 +16,13 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        // Start at origin
-        transform.position = Vector3.zero;
-
         state = GameObject.Find("State").GetComponent<StateScript>();
+        GetComponent<Health>().SetState(state);
         speed = state.playerSpeed;
         body = GetComponent<Rigidbody2D>();
+
+        // Start at origin
+        transform.position = Vector3.zero;
     }
 
     void Update()

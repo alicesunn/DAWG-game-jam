@@ -11,11 +11,6 @@ public class Health : MonoBehaviour
     private const float IFRAMES = 0.2f;
     private float iframeTimer = 0.0f;
 
-    private void Start()
-    {
-        state = GameObject.Find("State").GetComponent<StateScript>();
-    }
-
     private void Update()
     {
         if (iframeTimer > 0.0f) iframeTimer -= Time.deltaTime;
@@ -37,5 +32,10 @@ public class Health : MonoBehaviour
     {
         state.enemies.Remove(gameObject);
         Destroy(gameObject);
+    }
+
+    public void SetState(StateScript s)
+    {
+        state = s;
     }
 }

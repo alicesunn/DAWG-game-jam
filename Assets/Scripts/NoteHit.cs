@@ -15,7 +15,6 @@ public class NoteHit : MonoBehaviour
 
     void Start()
     {
-        state = GameObject.Find("State").GetComponent<StateScript>();
         targetBig = transform.localScale.x * 1.1f;
         targetSmall = transform.localScale.x * 0.9f;
         curTarget = targetBig;
@@ -57,5 +56,10 @@ public class NoteHit : MonoBehaviour
     {
         Vector3 rotate = new(0.0f, 0.0f, angle);
         transform.eulerAngles = rotate;
+    }
+
+    public void SetState(StateScript s)
+    {
+        state = s;
     }
 }
